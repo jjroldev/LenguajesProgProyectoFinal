@@ -457,3 +457,280 @@ Processing by Api::UsersController#index as HTML
 Completed 200 OK in 16ms (Views: 0.9ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 1.2ms)
 
 
+Started GET "/" for 127.0.0.1 at 2025-01-17 22:50:25 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering vendor/bundle/ruby/3.2.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered vendor/bundle/ruby/3.2.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 2.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:50:31 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (1.0ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 57ms (Views: 43.7ms | ActiveRecord: 1.4ms (1 query, 0 cached) | GC: 29.6ms)
+
+
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:51:34 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 46ms (Views: 32.9ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 23.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:51:36 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:51:36 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:51:37 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:51:37 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:51:37 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:51:37 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:58:57 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (1.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:58:58 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:12 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 42ms (Views: 28.7ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 18.9ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:13 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:13 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:13 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:14 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:31 -0500
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Backend'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 2 pending migrations:
+
+db/migrate/20250118014717_create_movies.rb
+db/migrate/20250118025658_create_users.rb
+
+
+):
+  
+activerecord (8.0.1) lib/active_record/migration.rb:743:in `check_pending_migrations'
+activerecord (8.0.1) lib/active_record/migration.rb:660:in `block (2 levels) in call'
+activesupport (8.0.1) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (8.0.1) lib/active_record/migration.rb:665:in `block in call'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in `synchronize'
+activerecord (8.0.1) lib/active_record/migration.rb:657:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (8.0.1) lib/rails/engine.rb:535:in `call'
+puma (6.5.0) lib/puma/configuration.rb:279:in `call'
+puma (6.5.0) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.5.0) lib/puma/thread_pool.rb:389:in `with_force_shutdown'
+puma (6.5.0) lib/puma/request.rb:98:in `handle_request'
+puma (6.5.0) lib/puma/server.rb:468:in `process_client'
+puma (6.5.0) lib/puma/server.rb:249:in `block in run'
+puma (6.5.0) lib/puma/thread_pool.rb:166:in `block in spawn_thread'
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Backend'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-01-18 03:59:45.988122', '2025-01-18 03:59:45.988124') RETURNING "key" /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Migrating to CreateMovies (20250118014717)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "movies" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "adult" boolean, "backdrop_path" varchar, "budget" integer, "homepage" varchar, "imdb_id" varchar, "original_language" varchar, "original_title" varchar, "overview" text, "popularity" float, "poster_path" varchar, "release_date" date, "revenue" integer, "runtime" integer, "status" varchar, "tagline" varchar, "title" varchar, "video" boolean, "vote_average" float, "vote_count" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250118014717') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Migrating to CreateUsers (20250118025658)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "password" varchar, "favorites" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250118025658') RETURNING "version" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:54 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 16ms (Views: 1.4ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:55 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:56 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:56 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:56 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 22:59:57 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/zOpe0eHsq0A2NvNyBbtT6sj53qV.jpg', NULL, NULL, NULL, 'en', 'Sonic the Hedgehog 3', 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.', 2525.912, 'https://www.google.com/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg', '2024-12-19', NULL, NULL, NULL, NULL, 'Sonic the Hedgehog 3', 0, 7.594, 621, '2025-01-18 04:01:13.077464', '2025-01-18 04:01:13.077464') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.7ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/oHPoF0Gzu8xwK4CtdXDaWdcuZxZ.jpg', NULL, NULL, NULL, 'en', 'Mufasa: The Lion King', 'Mufasa, a cub lost and alone, meets a sympathetic lion named Taka, the heir to a royal bloodline. The chance meeting sets in motion an expansive journey of a group of misfits searching for their destiny.', 2393.715, 'https://www.google.com/jbOSUAWMGzGL1L4EaUF8K6zYFo7.jpg', '2024-12-18', NULL, NULL, NULL, NULL, 'Mufasa: The Lion King', 0, 7.4, 704, '2025-01-18 04:01:13.080557', '2025-01-18 04:01:13.080557') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.7ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/euYIwmwkmz95mnXvufEmbL6ovhZ.jpg', NULL, NULL, NULL, 'en', 'Gladiator II', 'Years after witnessing the death of the revered hero Maximus at the hands of his uncle, Lucius is forced to enter the Colosseum after his home is conquered by the tyrannical Emperors who now lead Rome with an iron fist. With rage in his heart and the future of the Empire at stake, Lucius must look to his past to find strength and honor to return the glory of Rome to its people.', 1720.821, 'https://www.google.com/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg', '2024-11-05', NULL, NULL, NULL, NULL, 'Gladiator II', 0, 6.751, 2359, '2025-01-18 04:01:13.082975', '2025-01-18 04:01:13.082975') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (1.0ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/vZG7PrX9HmdgL5qfZRjhJsFYEIA.jpg', NULL, NULL, NULL, 'en', 'Venom: The Last Dance', 'Eddie and Venom are on the run. Hunted by both of their worlds and with the net closing in, the duo are forced into a devastating decision that will bring the curtains down on Venom and Eddie''s last dance.', 1694.909, 'https://www.google.com/aosm8NMQ3UyoBVpSxyimorCQykC.jpg', '2024-10-22', NULL, NULL, NULL, NULL, 'Venom: The Last Dance', 0, 6.812, 2392, '2025-01-18 04:01:13.085417', '2025-01-18 04:01:13.085417') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (1.0ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/iFsWkmAcu1QcMJ2LhqN8bU0Oj7.jpg', NULL, NULL, NULL, 'en', 'Kraven the Hunter', 'Kraven Kravinoff''s complex relationship with his ruthless gangster father, Nikolai, starts him down a path of vengeance with brutal consequences, motivating him to become not only the greatest hunter in the world, but also one of its most feared.', 1682.267, 'https://www.google.com/i47IUSsN126K11JUzqQIOi1Mg1M.jpg', '2024-12-11', NULL, NULL, NULL, NULL, 'Kraven the Hunter', 0, 6.267, 465, '2025-01-18 04:01:13.088468', '2025-01-18 04:01:13.088468') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/vYqt6kb4lcF8wwqsMMaULkP9OEn.jpg', NULL, NULL, NULL, 'en', 'Moana 2', 'After receiving an unexpected call from her wayfinding ancestors, Moana journeys alongside Maui and a new crew to the far seas of Oceania and into dangerous, long-lost waters for an adventure unlike anything she''s ever faced.', 1432.939, 'https://www.google.com/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg', '2024-11-21', NULL, NULL, NULL, NULL, 'Moana 2', 0, 7.0, 855, '2025-01-18 04:01:13.091409', '2025-01-18 04:01:13.091409') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (1.0ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/3WnoZw50qIfXsFnKr0LddEh5Jnf.jpg', NULL, NULL, NULL, 'no', 'Nr. 24', 'On the brink of the Second World War, a young Norwegian man''s drive to resist the Nazis sets a new course for his future – and the future of his country.', 1373.294, 'https://www.google.com/rzsmKSFEsEWBLbJ968abffnfYZ7.jpg', '2024-10-30', NULL, NULL, NULL, NULL, 'Nr. 24', 0, 7.4, 123, '2025-01-18 04:01:13.111819', '2025-01-18 04:01:13.111819') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.7ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/fzjH7kt1017R9EckLDmWmH5pGhD.jpg', NULL, NULL, NULL, 'en', 'Wicked', 'In the land of Oz, ostracized and misunderstood green-skinned Elphaba is forced to share a room with the popular aristocrat Glinda at Shiz University, and the two''s unlikely friendship is tested as they begin to fulfill their respective destinies as Glinda the Good and the Wicked Witch of the West.', 1270.61, 'https://www.google.com/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg', '2024-11-20', NULL, NULL, NULL, NULL, 'Wicked', 0, 7.114, 1308, '2025-01-18 04:01:13.118128', '2025-01-18 04:01:13.118128') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (1.0ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/rhc8Mtuo3Kh8CndnlmTNMF8o9pU.jpg', NULL, NULL, NULL, 'en', 'Werewolves', 'A year after a supermoon’s light activated a dormant gene, transforming humans into bloodthirsty werewolves and causing nearly a billion deaths, the nightmare resurfaces as the supermoon rises again. Two scientists attempt to stop the mutation but fail and must now struggle to reach one of their family homes.', 1096.46, 'https://www.google.com/cRTctVlwvMdXVsaYbX5qfkittDP.jpg', '2024-12-04', NULL, NULL, NULL, NULL, 'Werewolves', 0, 6.536, 193, '2025-01-18 04:01:13.120375', '2025-01-18 04:01:13.120375') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.7ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/k24eZq5I3jyz4htPkZCRpnUmBzE.jpg', NULL, NULL, NULL, 'en', 'The Lord of the Rings: The War of the Rohirrim', 'A sudden attack by Wulf, a clever and traitorous lord of Rohan seeking vengeance for the death of his father, forces Helm Hammerhand, the King of Rohan, and his people to make a daring last stand in the ancient stronghold of the Hornburg.', 1049.714, 'https://www.google.com/cXzCOx1hUuU9CfmiEv6rXjb6EqU.jpg', '2024-12-05', NULL, NULL, NULL, NULL, 'The Lord of the Rings: The War of the Rohirrim', 0, 6.5, 323, '2025-01-18 04:01:13.122729', '2025-01-18 04:01:13.122729') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.7ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/bx6LoGl8L3hwgOCoD2H8JgIu7uC.jpg', NULL, NULL, NULL, 'es', 'Culpa tuya', 'The love between Noah and Nick seems unwavering despite their parents'' attempts to separate them. But his job and her entry into college open up their lives to new relationships that will shake the foundations of both their relationship and the Leister family itself.', 1035.271, 'https://www.google.com/1sQA7lfcF9yUyoLYC0e6Zo3jmxE.jpg', '2024-12-26', NULL, NULL, NULL, NULL, 'Culpa tuya', 0, 7.154, 870, '2025-01-18 04:01:13.124939', '2025-01-18 04:01:13.124939') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (1.1ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/7h6TqPB3ESmjuVbxCxAeB1c9OB1.jpg', NULL, NULL, NULL, 'en', 'Red One', 'After Santa Claus (codename: Red One) is kidnapped, the North Pole''s Head of Security must team up with the world''s most infamous tracker in a globe-trotting, action-packed mission to save Christmas.', 972.76, 'https://www.google.com/cdqLnri3NEGcmfnqwk2TSIYtddg.jpg', '2024-10-31', NULL, NULL, NULL, NULL, 'Red One', 0, 7.1, 2044, '2025-01-18 04:01:13.127110', '2025-01-18 04:01:13.127110') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Backend'*/[0m
+  [1m[36mMovie Create (0.8ms)[0m  [1m[32mINSERT INTO "movies" ("adult", "backdrop_path", "budget", "homepage", "imdb_id", "original_language", "original_title", "overview", "popularity", "poster_path", "release_date", "revenue", "runtime", "status", "tagline", "title", "video", "vote_average", "vote_count", "created_at", "updated_at") VALUES (0, '/au3o84ub27qTZiMiEc9UYzN74V3.jpg', NULL, NULL, NULL, 'ja', 'Solo Leveling -ReAwakening-', 'Over a decade after ''gates'' connecting worlds appeared, awakening ''hunters'' with superpowers, weakest hunter Sung Jinwoo encounters a double dungeon and accepts a mysterious quest, becoming the only one able to level up, changing his fate. A catch-up recap of the first season coupled with an exclusive sneak peek of the first two episodes of the highly anticipated second season in one momentous theatrical fan experience.', 814.947, 'https://www.google.com/uzHMp5heVLR68kbbUEXFPsmxYsM.jpg', '2024-11-26', NULL, NULL, NULL, NULL, 'Solo Leveling -ReAwakening-', 0, 7.0, 76, '2025-01-18 04:01:13.130100', '2025-01-18 04:01:13.130100') RETURNING "id" /*application='Backend'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Backend'*/[0m
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 23:01:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.8ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in `index'
+Completed 200 OK in 42ms (Views: 28.0ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 16.9ms)
+
+
