@@ -1,5 +1,5 @@
-class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show update destroy ]
+class Api::MoviesController < ApplicationController
+  before_action :set_movie, only: %i[ show update_completed destroy ]
 
   # GET /movies
   def index
@@ -18,15 +18,15 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
 
     if @movie.save
-      render json: @movie, status: :created, location: @movie
+      render json: @movie, status: :created
     else
       render json: @movie.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /movies/1
-  def update
-    if @movie.update(movie_params)
+  def update_completed
+    if @movie.update(completed: params[:completed])
       render json: @movie
     else
       render json: @movie.errors, status: :unprocessable_entity
