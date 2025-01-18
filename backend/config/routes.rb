@@ -5,7 +5,11 @@ Rails.application.routes.draw do
         patch 'update_completed'
       end
     end
-    resources :users
+    resources :users do
+      member do
+        patch 'update_completed'
+      end
+    end
   end
 
 end

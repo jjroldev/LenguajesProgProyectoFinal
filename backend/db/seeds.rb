@@ -14,3 +14,11 @@ Movie.create(title:"Culpa tuya", overview:"The love between Noah and Nick seems 
 Movie.create(title:"Red One", overview:"After Santa Claus (codename: Red One) is kidnapped, the North Pole's Head of Security must team up with the world's most infamous tracker in a globe-trotting, action-packed mission to save Christmas.", poster_path:"https://www.google.com/cdqLnri3NEGcmfnqwk2TSIYtddg.jpg", release_date:"2024-10-31", vote_average:7.1, vote_count:2044, adult:false, backdrop_path:"/7h6TqPB3ESmjuVbxCxAeB1c9OB1.jpg", original_language:"en", original_title:"Red One", popularity:972.76, video:false)
 Movie.create(title:"Solo Leveling -ReAwakening-", overview:"Over a decade after 'gates' connecting worlds appeared, awakening 'hunters' with superpowers, weakest hunter Sung Jinwoo encounters a double dungeon and accepts a mysterious quest, becoming the only one able to level up, changing his fate. A catch-up recap of the first season coupled with an exclusive sneak peek of the first two episodes of the highly anticipated second season in one momentous theatrical fan experience.", poster_path:"https://www.google.com/uzHMp5heVLR68kbbUEXFPsmxYsM.jpg", release_date:"2024-11-26", vote_average:7, vote_count:76, adult:false, backdrop_path:"/au3o84ub27qTZiMiEc9UYzN74V3.jpg", original_language:"ja", original_title:"Solo Leveling -ReAwakening-", popularity:814.947, video:false)
 
+
+User.destroy_all
+
+# db/seeds.rb
+User.create(name: "John Doe", password: "password123", favorites: "[]")
+User.create(name: "Jane Smith", password: "securepass456", favorites: "[]")
+User.create(name: "Alice Johnson", password: "mypassword789", favorites: "[]")
+
