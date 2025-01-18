@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_18_014717) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_18_025658) do
   create_table "movies", force: :cascade do |t|
     t.boolean "adult"
     t.string "backdrop_path"
@@ -31,6 +31,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_18_014717) do
     t.boolean "video"
     t.float "vote_average"
     t.integer "vote_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.text "favorites"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
