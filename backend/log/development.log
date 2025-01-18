@@ -937,3 +937,40 @@ Processing by Api::UsersController#index as HTML
 Completed 200 OK in 36ms (Views: 21.8ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 16.8ms)
 
 
+Started GET "/" for 127.0.0.1 at 2025-01-17 23:47:18 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering vendor/bundle/ruby/3.4.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered vendor/bundle/ruby/3.4.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 641ms (Views: 135.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/icon.png" for 127.0.0.1 at 2025-01-17 23:47:21 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/icon.png"):
+  
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 23:47:23 -0500
+Processing by Api::MoviesController#index as */*
+  [1m[36mMovie Load (3.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in 'Api::MoviesController#index'
+Completed 200 OK in 545ms (Views: 51.2ms | ActiveRecord: 5.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 23:47:24 -0500
+Processing by Api::MoviesController#index as */*
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in 'Api::MoviesController#index'
+Completed 200 OK in 11ms (Views: 10.8ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-17 23:47:51 -0500
+Processing by Api::MoviesController#index as HTML
+  [1m[36mMovie Load (0.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='Backend',controller='movies'*/[0m
+  ↳ app/controllers/api/movies_controller.rb:8:in 'Api::MoviesController#index'
+Completed 200 OK in 12ms (Views: 11.1ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-01-17 23:47:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
