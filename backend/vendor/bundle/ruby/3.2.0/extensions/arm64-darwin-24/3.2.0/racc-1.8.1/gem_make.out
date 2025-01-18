@@ -1,0 +1,19 @@
+current directory: /Users/richardo/development/ruby/LenguajesProgProyectoFinal/backend/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+/Users/richardo/.rbenv/versions/3.2.0/bin/ruby -I /Users/richardo/.rbenv/versions/3.2.0/lib/ruby/3.2.0 extconf.rb
+creating Makefile
+
+current directory: /Users/richardo/development/ruby/LenguajesProgProyectoFinal/backend/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250117-44317-b1xg86 sitelibdir\=./.gem.20250117-44317-b1xg86 clean
+
+current directory: /Users/richardo/development/ruby/LenguajesProgProyectoFinal/backend/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250117-44317-b1xg86 sitelibdir\=./.gem.20250117-44317-b1xg86
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/richardo/development/ruby/LenguajesProgProyectoFinal/backend/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250117-44317-b1xg86 sitelibdir\=./.gem.20250117-44317-b1xg86 install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20250117-44317-b1xg86/racc
+
+current directory: /Users/richardo/development/ruby/LenguajesProgProyectoFinal/backend/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250117-44317-b1xg86 sitelibdir\=./.gem.20250117-44317-b1xg86 clean
