@@ -1,6 +1,10 @@
 import './App.css'
 import { User } from './interfaces/user';
 import { Movie } from './interfaces/movie'
+import { PageLogin } from './componentes/PageLogin/PageLogin';
+import { PageRegister } from './componentes/PageRegister/PageRegister';
+import { BrowserRouter, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 function App() {
 
   // const movie: Movie = {
@@ -138,6 +142,12 @@ function App() {
         handleRemoveFavorite("alice@example.com", movie)
       }}>Eliminar Movie a Alice</button>
     </> */}
+      <BrowserRouter>
+        <Routes>
+          <Route index path="/" element={<PageLogin />} />
+          <Route path="/register" element={<PageRegister />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

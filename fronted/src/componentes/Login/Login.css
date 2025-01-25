@@ -1,0 +1,94 @@
+.formContainer{
+    height: 80%;
+    width: 100%;
+    z-index: 3;
+}
+
+.formulario{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 29%;
+    margin: 0 auto;
+    height: 100%;
+    padding: 70px;
+    background-color: rgba(0,0,0,.7);
+}
+
+.headerForm{
+    text-align: left;
+}
+
+.headerForm h2{
+    font-weight: bold;
+    font-size: 2rem;
+}
+.formulario input{
+    background-color: rgba(0,0,0,.4);
+    padding: 15px;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+}
+
+input::placeholder{
+    color:rgba(199, 199, 199, 0.9);
+    border: none;
+}
+
+input:focus {
+    border: 1px solid #ffffff;
+  }
+  
+
+.formulario .contenedorInput{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario div{
+    width: 100%;
+}
+
+.contenedorInput input{
+    width: 100%;
+    box-shadow: 0 0 0 0.2px #fff;
+    border-radius: 5px;
+}
+
+
+.button-enviar{
+    width: 100%;
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 700;
+    background-color: rgb(226, 226, 10);
+    border: none;
+    transition: all .2s ease-in-out;
+}
+
+.button-enviar:hover{
+    background-color: rgba(226, 226, 10,.9);
+}
+
+
+.suscripbirse{
+    font-weight: 400;
+    color:rgba(199, 199, 199, 0.9);
+    text-align: center;
+}
+
+.suscripbirse span{
+    cursor: pointer;
+    color: #fff;
+}
+
+
+.suscripbirse span:hover{
+    text-decoration: underline;
+}
