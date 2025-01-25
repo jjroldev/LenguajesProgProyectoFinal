@@ -67,6 +67,7 @@ input:focus {
     font-size: 1.3rem;
     color: #fff;
     font-weight: 700;
+    padding: 10px;
     background-color: rgb(226, 226, 10);
     border: none;
     transition: all .2s ease-in-out;

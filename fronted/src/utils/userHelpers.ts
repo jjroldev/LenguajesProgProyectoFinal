@@ -21,7 +21,7 @@ const verificarUsuarioExiste = (users: User[], email: string) => {
 };
 
 
-export const guardarUsuario = async (user: User, usuarios: User[]) => {
+export const guardarUsuario = async (user: User, usuarios: User[], navigate: (path: string) => void) => {
     try {
         if (!verificarUsuarioExiste(usuarios, user.email)) {
             const response = await fetch("http://localhost:3000/users", {
@@ -40,6 +40,7 @@ export const guardarUsuario = async (user: User, usuarios: User[]) => {
             }
         } else {
             console.log("El usuario ya existe.");
+            navigate("/");
             return false;
         }
     } catch (error) {
@@ -118,6 +119,10 @@ export const removeMovieFavoriteOfUser = async (email: string, movie: Movie) => 
 };
 
 
-export const verificarCredenciales = (email: string, password: string, usuarios: User[]) => {
-    return usuarios.some(user => user.email === email && user.password === password);
+export const verificarCredenciales = (
+    email: string, 
+    password: string, 
+    usuarios: User[]
+): User | null => {
+    return usuarios.find(user => user.email === email && user.password === password) || null;
 };

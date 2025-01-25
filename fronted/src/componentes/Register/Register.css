@@ -1,0 +1,8 @@
+.suscribirse{
+    text-align: center;
+}
+
+.suscribirse span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

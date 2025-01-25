@@ -43,10 +43,51 @@
     font-size: 1.3rem;
     transition: .3s ease-in-out;
     cursor: pointer;
+    color:#fff;
 }
 
 .textInicio:hover,.lupa:hover{
     color: rgba(255,255,255,.7);
 }
 
+.perfilYLupaContenedor{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
 
+.contenedorPerfilImagen{
+  display: flex;
+  color: #fff;
+  gap: 20px;
+  
+}
+
+.containerImagePerfil{
+  display: flex;
+  gap: 20px;
+  width: 30px;
+}
+
+.containerImagePerfil img{
+  width: 100%;
+  border-radius:1px;
+
+}
+
+.navbarScrollingDropdown span:hover{
+  text-decoration: underline;
+}
+
+.drop{
+  font-weight: 400;
+}
+
+.logOut{
+  transition: .2s ease-in-out;
+}
+
+.logOut:hover{
+  color: red;
+}

@@ -13,7 +13,11 @@ import useFetchProviders from "../../hooks/useFetchProviders";
 import useFetchLogo from "../../hooks/useFetchLogo";
 import { responsiveCredits } from "../../utils/ResponsiveCarousel";
 import Carousel from "react-multi-carousel";
-export function Banner({ movie, logoBuscar, isShort, isDetail}: {movie: Movie; logoBuscar: boolean, isShort: boolean, isDetail?: boolean }) {
+
+interface BannerProps{
+    movie: Movie; logoBuscar: boolean, isShort: boolean, isDetail?: boolean
+}
+export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
     const [open, setOpen] = React.useState(false);
     const { movie: fetchedDetails, isLoading } = useFetchMovieDetails(movie.movie_id);
     const { logoPath } = useFetchLogo(movie?.movie_id);
@@ -162,7 +166,7 @@ export function Banner({ movie, logoBuscar, isShort, isDetail}: {movie: Movie; l
                 src={`${URL_IMAGE_BANNER}${movie.backdrop_path}`}
                 alt={movie.title}
             />
-            <NavBar menu={true} logoBuscar={logoBuscar} />
+            <NavBar perfil={true} menu={true} logoBuscar={logoBuscar} />
             <div className="cuerpoBanner">
                 <div className={`${isShort ? "contenedorLogo1" : `contenedorLogo ${isDetail ? "contenedorDetailN" : ""}`} `}>
                     {renderLogoOrContent()}

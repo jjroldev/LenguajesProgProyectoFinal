@@ -4,8 +4,8 @@ import './Register.css';
 import { useEffect, useState } from 'react';
 import { getUsuarios, guardarUsuario } from '../../utils/userHelpers';
 import { useAuth } from '../../context/AuthContext';
-
 export default function Register() {
+    const {setCurrentUser}=useAuth()
     const { login } = useAuth();
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState('');
@@ -26,10 +26,10 @@ export default function Register() {
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const user: User = { name, last_name: lastName, email, password };
-        
-        const success = await guardarUsuario(user, usuarios);
+        const success = await guardarUsuario(user, usuarios,navigate);
         if (success) {
-            login(); 
+            setCurrentUser(user);
+            login(user); 
             navigate("/home");
         } else {
             console.error("Error al registrar usuario");
