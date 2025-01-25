@@ -2124,3 +2124,1132 @@ Started GET "/favicon.ico" for ::1 at 2025-01-24 22:04:19 -0500
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:11:50 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (5.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c79537bff0>, params: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg' AND "movies"."movie_id" = '939243' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sonic the Hedgehog 3' AND "movies"."overview" = 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.' AND "movies"."popularity" = 6277.745 AND "movies"."poster_path" = '/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg' AND "movies"."release_date" = '2024-12-19' AND "movies"."title" = 'Sonic the Hedgehog 3' AND "movies"."video" = 0 AND "movies"."vote_average" = 7.806 AND "movies"."vote_count" = 906 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mUser::HABTM_Movies Create (0.9ms)[0m  [1m[32mINSERT INTO "movies_users" ("user_id", "movie_id") VALUES (1, 939243) /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 149ms (Views: 0.2ms | ActiveRecord: 14.6ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:12:00 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 4ms (Views: 4.0ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:12:25 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:30:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:32:in 'UsersController#favorites'
+Completed 200 OK in 9ms (Views: 5.1ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:18:51 -0500
+Started DELETE "/users/remove_favorite" for ::1 at 2025-01-24 22:18:51 -0500
+Processing by UsersController#remove_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"movie_id" => 939243}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:20:in 'UsersController#remove_favorite'
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:21:in 'UsersController#remove_favorite'
+  [1m[36mMovie Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:23:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mUser::HABTM_Movies Delete All (4.2ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 1 AND "movies_users"."movie_id" = 939243 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+Completed 200 OK in 50ms (Views: 0.3ms | ActiveRecord: 8.8ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c795aace50>, params: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg' AND "movies"."movie_id" = '939243' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sonic the Hedgehog 3' AND "movies"."overview" = 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.' AND "movies"."popularity" = 6277.745 AND "movies"."poster_path" = '/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg' AND "movies"."release_date" = '2024-12-19' AND "movies"."title" = 'Sonic the Hedgehog 3' AND "movies"."video" = 0 AND "movies"."vote_average" = 7.806 AND "movies"."vote_count" = 906 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mUser::HABTM_Movies Create (4.8ms)[0m  [1m[32mINSERT INTO "movies_users" ("user_id", "movie_id") VALUES (1, 939243) /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 59ms (Views: 0.1ms | ActiveRecord: 5.7ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:19:00 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:44:in 'UsersController#favorites'
+Completed 200 OK in 22ms (Views: 13.7ms | ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:19:03 -0500
+Started DELETE "/users/remove_favorite" for ::1 at 2025-01-24 22:19:03 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c7940aa5c0>, params: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg' AND "movies"."movie_id" = '939243' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sonic the Hedgehog 3' AND "movies"."overview" = 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.' AND "movies"."popularity" = 6277.745 AND "movies"."poster_path" = '/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg' AND "movies"."release_date" = '2024-12-19' AND "movies"."title" = 'Sonic the Hedgehog 3' AND "movies"."video" = 0 AND "movies"."vote_average" = 7.806 AND "movies"."vote_count" = 906 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#remove_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"movie_id" => 939243}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:20:in 'UsersController#remove_favorite'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:21:in 'UsersController#remove_favorite'
+  [1m[36mMovie Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:23:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mUser::HABTM_Movies Delete All (3.5ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 1 AND "movies_users"."movie_id" = 939243 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 4.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:19:06 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:44:in 'UsersController#favorites'
+Completed 200 OK in 21ms (Views: 11.4ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:19:08 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c794771908>, params: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg' AND "movies"."movie_id" = '939243' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sonic the Hedgehog 3' AND "movies"."overview" = 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.' AND "movies"."popularity" = 6277.745 AND "movies"."poster_path" = '/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg' AND "movies"."release_date" = '2024-12-19' AND "movies"."title" = 'Sonic the Hedgehog 3' AND "movies"."video" = 0 AND "movies"."vote_average" = 7.806 AND "movies"."vote_count" = 906 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mUser::HABTM_Movies Create (3.1ms)[0m  [1m[32mINSERT INTO "movies_users" ("user_id", "movie_id") VALUES (1, 939243) /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 3.7ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:19:13 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:44:in 'UsersController#favorites'
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/remove_favorite" for ::1 at 2025-01-24 22:19:15 -0500
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:19:15 -0500
+Processing by UsersController#remove_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"movie_id" => 939243}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:20:in 'UsersController#remove_favorite'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:21:in 'UsersController#remove_favorite'
+  [1m[36mMovie Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:23:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mUser::HABTM_Movies Delete All (4.1ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 1 AND "movies_users"."movie_id" = 939243 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 5.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c7949d0320>, params: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg' AND "movies"."movie_id" = '939243' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sonic the Hedgehog 3' AND "movies"."overview" = 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.' AND "movies"."popularity" = 6277.745 AND "movies"."poster_path" = '/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg' AND "movies"."release_date" = '2024-12-19' AND "movies"."title" = 'Sonic the Hedgehog 3' AND "movies"."video" = 0 AND "movies"."vote_average" = 7.806 AND "movies"."vote_count" = 906 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mUser::HABTM_Movies Create (6.3ms)[0m  [1m[32mINSERT INTO "movies_users" ("user_id", "movie_id") VALUES (1, 939243) /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 48ms (Views: 0.2ms | ActiveRecord: 7.5ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:19:17 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:44:in 'UsersController#favorites'
+Completed 200 OK in 10ms (Views: 5.5ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:19:19 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:44:in 'UsersController#favorites'
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:19:22 -0500
+Started DELETE "/users/remove_favorite" for ::1 at 2025-01-24 22:19:22 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c795512620>, params: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg' AND "movies"."movie_id" = '939243' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sonic the Hedgehog 3' AND "movies"."overview" = 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.' AND "movies"."popularity" = 6277.745 AND "movies"."poster_path" = '/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg' AND "movies"."release_date" = '2024-12-19' AND "movies"."title" = 'Sonic the Hedgehog 3' AND "movies"."video" = 0 AND "movies"."vote_average" = 7.806 AND "movies"."vote_count" = 906 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#remove_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"movie_id" => 939243}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:20:in 'UsersController#remove_favorite'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:21:in 'UsersController#remove_favorite'
+  [1m[36mMovie Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 AND "movies"."movie_id" = '939243' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:23:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mUser::HABTM_Movies Delete All (4.2ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 1 AND "movies_users"."movie_id" = 939243 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+Completed 200 OK in 20ms (Views: 0.1ms | ActiveRecord: 5.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:19:24 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:44:in 'UsersController#favorites'
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 22:22:47 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:44:in 'UsersController#favorites'
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/ap/movies" for 127.0.0.1 at 2025-01-24 22:23:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ap/movies"):
+  
+Started GET "/ap/movies" for 127.0.0.1 at 2025-01-24 22:23:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ap/movies"):
+  
+Started GET "/users/f" for 127.0.0.1 at 2025-01-24 22:27:00 -0500
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for UsersController):
+  
+actionpack (8.0.1) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionpack (8.0.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.8) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.8) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.8) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.5.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.5.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.5.0) lib/puma/thread_pool.rb:389:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.5.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.5.0) lib/puma/server.rb:468:in 'Puma::Server#process_client'
+puma (6.5.0) lib/puma/server.rb:249:in 'block in Puma::Server#run'
+puma (6.5.0) lib/puma/thread_pool.rb:166:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:27:02 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (7.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 16ms (Views: 8.6ms | ActiveRecord: 7.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 22:38:18 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (17.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'Roldán', 'justyn@example.com', 'password123', '2025-01-25 03:38:19.603934', '2025-01-25 03:38:19.603934') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 52ms (Views: 2.0ms | ActiveRecord: 19.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:38:25 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 17ms (Views: 16.8ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users" for ::1 at 2025-01-24 22:38:31 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+Started DELETE "/users" for ::1 at 2025-01-24 22:38:42 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+Started POST "/users" for ::1 at 2025-01-24 22:43:01 -0500
+  
+SyntaxError (C:/Users/justi/Downloads/LenguajesProgProyectoFinal/backend/movies_app/config/routes.rb:18: syntax errors found
+  [2m16 | [m  end
+  [2m17 | [m
+[1;31m> [m[2m18 | [m  resources: users do
+  [2m   | [m           [1;31m^[m unexpected ':', ignoring it
+  [2m   | [m           [1;31m^[m unexpected ':', expecting end-of-input
+[1;31m> [m[2m19 | [mend
+  [2m   | [m   [1;31m^[m unexpected end-of-input, assuming it is closing the parent top level context
+[1;31m> [m[2m20 | [m
+  [2m   | [m[1;31m^[m expected a block beginning with `do` to end with `end`
+):
+  
+config/routes.rb:18: syntax errors found
+Started DELETE "/users" for ::1 at 2025-01-24 22:43:06 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+Started POST "/users" for ::1 at 2025-01-24 22:43:32 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (4.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 422 Unprocessable Content in 26ms (Views: 1.4ms | ActiveRecord: 10.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 22:43:42 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (4.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 422 Unprocessable Content in 20ms (Views: 0.4ms | ActiveRecord: 7.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users" for ::1 at 2025-01-24 22:43:45 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:43:49 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users" for ::1 at 2025-01-24 22:44:57 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+Started POST "/users" for ::1 at 2025-01-24 22:45:06 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (3.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 422 Unprocessable Content in 18ms (Views: 0.5ms | ActiveRecord: 6.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users" for ::1 at 2025-01-24 22:45:12 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+Started DELETE "/users" for ::1 at 2025-01-24 22:45:42 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 22:47:27 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:52:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (0.7ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 3 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 3 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+Completed 200 OK in 26ms (Views: 0.1ms | ActiveRecord: 8.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:47:31 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 22:47:34 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (3.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'Roldán', 'justyn@example.com', 'password123', '2025-01-25 03:47:34.938193', '2025-01-25 03:47:34.938193') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 16ms (Views: 1.1ms | ActiveRecord: 4.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:47:36 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 22:47:40 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (3.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 422 Unprocessable Content in 9ms (Views: 0.5ms | ActiveRecord: 3.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 22:47:44 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:52:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (2.7ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 4 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 4 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:55:in 'UsersController#destroy_by_email'
+Completed 200 OK in 12ms (Views: 0.1ms | ActiveRecord: 3.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 22:47:45 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:52:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 22:48:34 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (3.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'Roldán', 'justyn@example.com', 'password123', '2025-01-25 03:48:35.399650', '2025-01-25 03:48:35.399650') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 24ms (Views: 0.8ms | ActiveRecord: 8.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:48:37 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 22:48:41 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (0.1ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 5 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 5 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+Completed 200 OK in 20ms (Views: 0.1ms | ActiveRecord: 3.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:48:43 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:49:58 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 21ms (Views: 11.2ms | ActiveRecord: 3.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 22:50:06 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:33:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:39:in 'UsersController#create'
+  [1m[36mUser Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:39:in 'UsersController#create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'Roldán', 'justyn@example.com', 'password123', '2025-01-25 03:50:06.446940', '2025-01-25 03:50:06.446940') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:39:in 'UsersController#create'
+  [1m[36mTRANSACTION (11.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:39:in 'UsersController#create'
+Completed 201 Created in 27ms (Views: 0.9ms | ActiveRecord: 14.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 22:50:07 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "Roldán", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:33:in 'UsersController#create'
+Completed 422 Unprocessable Content in 3ms (Views: 0.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 22:50:26 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:49:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (0.1ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 6 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 6 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#destroy_by_email'
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 3.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 22:50:27 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justyn@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:49:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 22:50:42 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 25ms (Views: 12.0ms | ActiveRecord: 3.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/ap/movies" for 127.0.0.1 at 2025-01-24 22:54:59 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ap/movies"):
+  
+Started GET "/ap/movies" for 127.0.0.1 at 2025-01-24 22:55:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/ap/movies"):
+  
+Started POST "/users" for ::1 at 2025-01-24 23:08:59 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Alice", "last_name" => "Smith", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (10.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 422 Unprocessable Content in 45ms (Views: 3.4ms | ActiveRecord: 10.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:09:04 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:09:10 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justinjaelroldanmendez123@gmail.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 23:09:12 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"backdrop_path" => "/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg", "movie_id" => 957119, "title" => "Sidelined: The QB and Me", "original_title" => "Sidelined: The QB and Me", "overview" => "Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?", "poster_path" => "/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg", "adult" => false, "original_language" => "en", "genre_ids" => [35, 10749], "popularity" => 519.926, "release_date" => "2024-11-29", "video" => false, "vote_average" => 6.6, "vote_count" => 120}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justinjaelroldanmendez123@gmail.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c794ebe1c0>, params: {"email" => "[FILTERED]", "movie" => {"backdrop_path" => "/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg", "movie_id" => 957119, "title" => "Sidelined: The QB and Me", "original_title" => "Sidelined: The QB and Me", "overview" => "Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?", "poster_path" => "/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg", "adult" => false, "original_language" => "en", "genre_ids" => [35, 10749], "popularity" => 519.926, "release_date" => "2024-11-29", "video" => false, "vote_average" => 6.6, "vote_count" => 120}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg' AND "movies"."movie_id" = '957119' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sidelined: The QB and Me' AND "movies"."overview" = 'Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?' AND "movies"."popularity" = 519.926 AND "movies"."poster_path" = '/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg' AND "movies"."release_date" = '2024-11-29' AND "movies"."title" = 'Sidelined: The QB and Me' AND "movies"."video" = 0 AND "movies"."vote_average" = 6.6 AND "movies"."vote_count" = 120 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+Completed 404 Not Found in 195ms (Views: 0.2ms | ActiveRecord: 1.5ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 23:12:06 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (14.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'justinjaelroldanmendez123@gmail.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 422 Unprocessable Content in 26ms (Views: 1.4ms | ActiveRecord: 14.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:12:13 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:12:49 -0500
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:12:49 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'undefined' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'undefined' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:12:50 -0500
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:12:50 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = '' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 4ms (Views: 0.2ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = '' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:06 -0500
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:06 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (0.1ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+Completed 200 OK in 26ms (Views: 0.1ms | ActiveRecord: 7.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:06 -0500
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:06 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:27 -0500
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:27 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 6ms (Views: 0.3ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:29 -0500
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:13:29 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:15:35 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:15:58 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 4ms (Views: 0.4ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-24 23:18:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/movies"):
+  
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-24 23:18:35 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/movies"):
+  
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:19:12 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (4.8ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 2 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 2 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+Completed 200 OK in 30ms (Views: 0.2ms | ActiveRecord: 5.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:19:17 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:20:10 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.5ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 23:21:22 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "as", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (13.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'ssddsd' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'as', 'ssddsd', 'dssdjksdjksd', '2025-01-25 04:21:22.559495', '2025-01-25 04:21:22.559495') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 30ms (Views: 1.0ms | ActiveRecord: 14.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:21:25 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 15ms (Views: 14.6ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:21:31 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 23:22:09 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "as", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (4.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'as', 'alice@example.com', 'dssdjksdjksd', '2025-01-25 04:22:09.695719', '2025-01-25 04:22:09.695719') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 16ms (Views: 1.0ms | ActiveRecord: 5.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:22:13 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:22:16 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'bob@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+Completed 404 Not Found in 3ms (Views: 0.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:22:28 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (3.1ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 8 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 8 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+Completed 200 OK in 24ms (Views: 0.1ms | ActiveRecord: 3.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:22:32 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:23:09 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 23:23:15 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "as", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (3.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'ssddsd' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 422 Unprocessable Content in 17ms (Views: 3.4ms | ActiveRecord: 3.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 23:23:17 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "as", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (14.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'as', 'alice@example.com', 'dssdjksdjksd', '2025-01-25 04:23:17.198387', '2025-01-25 04:23:17.198387') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 24ms (Views: 0.8ms | ActiveRecord: 14.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 23:23:29 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "as", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (3.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'ssddrsd' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'as', 'ssddrsd', 'dssdjksdjksd', '2025-01-25 04:23:29.999026', '2025-01-25 04:23:29.999026') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 18ms (Views: 0.8ms | ActiveRecord: 4.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/destroy_by_email?email=[FILTERED]" for ::1 at 2025-01-24 23:23:31 -0500
+Processing by UsersController#destroy_by_email as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:42:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser::HABTM_Movies Delete All (12.9ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 9 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mUser Destroy (0.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = 9 /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='destroy_by_email',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:45:in 'UsersController#destroy_by_email'
+Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 13.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:27:26 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 4ms (Views: 4.0ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2025-01-24 23:27:30 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user" => {"name" => "Justyn", "last_name" => "as", "email" => "[FILTERED]", "password" => "[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Exists? (3.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mUser Create (10.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "last_name", "email", "password", "created_at", "updated_at") VALUES ('Justyn', 'as', 'alice@example.com', 'dssdjksdjksd', '2025-01-25 04:27:30.678234', '2025-01-25 04:27:30.678234') RETURNING "id" /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:34:in 'UsersController#create'
+Completed 201 Created in 24ms (Views: 0.9ms | ActiveRecord: 13.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 23:27:33 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 23:27:51 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#favorites'
+  [1m[36mMovie Load (1.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:56:in 'UsersController#favorites'
+Completed 200 OK in 24ms (Views: 15.5ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 23:27:55 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"backdrop_path" => "/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg", "movie_id" => 957119, "title" => "Sidelined: The QB and Me", "original_title" => "Sidelined: The QB and Me", "overview" => "Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?", "poster_path" => "/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg", "adult" => false, "original_language" => "en", "genre_ids" => [35, 10749], "popularity" => 519.926, "release_date" => "2024-11-29", "video" => false, "vote_average" => 6.6, "vote_count" => 120}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c795143170>, params: {"email" => "[FILTERED]", "movie" => {"backdrop_path" => "/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg", "movie_id" => 957119, "title" => "Sidelined: The QB and Me", "original_title" => "Sidelined: The QB and Me", "overview" => "Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?", "poster_path" => "/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg", "adult" => false, "original_language" => "en", "genre_ids" => [35, 10749], "popularity" => 519.926, "release_date" => "2024-11-29", "video" => false, "vote_average" => 6.6, "vote_count" => 120}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg' AND "movies"."movie_id" = '957119' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sidelined: The QB and Me' AND "movies"."overview" = 'Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?' AND "movies"."popularity" = 519.926 AND "movies"."poster_path" = '/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg' AND "movies"."release_date" = '2024-11-29' AND "movies"."title" = 'Sidelined: The QB and Me' AND "movies"."video" = 0 AND "movies"."vote_average" = 6.6 AND "movies"."vote_count" = 120 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 AND "movies"."movie_id" = '957119' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mUser::HABTM_Movies Create (4.2ms)[0m  [1m[32mINSERT INTO "movies_users" ("user_id", "movie_id") VALUES (11, 957119) /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 40ms (Views: 0.1ms | ActiveRecord: 5.4ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 23:28:00 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#favorites'
+  [1m[36mMovie Load (11.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:56:in 'UsersController#favorites'
+Completed 200 OK in 36ms (Views: 16.7ms | ActiveRecord: 11.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 23:28:21 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'ssddrsd' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 10 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:56:in 'UsersController#favorites'
+Completed 200 OK in 7ms (Views: 3.9ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 23:29:47 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:56:in 'UsersController#favorites'
+Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/users/remove_favorite" for ::1 at 2025-01-24 23:29:49 -0500
+Processing by UsersController#remove_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"movie_id" => 957119}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:20:in 'UsersController#remove_favorite'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."movie_id" = '957119' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:21:in 'UsersController#remove_favorite'
+  [1m[36mMovie Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 AND "movies"."movie_id" = '957119' LIMIT 1 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:23:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mUser::HABTM_Movies Delete All (4.4ms)[0m  [1m[31mDELETE FROM "movies_users" WHERE "movies_users"."user_id" = 11 AND "movies_users"."movie_id" = 957119 /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='remove_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:24:in 'UsersController#remove_favorite'
+Completed 200 OK in 30ms (Views: 0.2ms | ActiveRecord: 5.4ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 23:29:52 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:56:in 'UsersController#favorites'
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 23:29:54 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"backdrop_path" => "/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg", "movie_id" => 957119, "title" => "Sidelined: The QB and Me", "original_title" => "Sidelined: The QB and Me", "overview" => "Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?", "poster_path" => "/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg", "adult" => false, "original_language" => "en", "genre_ids" => [35, 10749], "popularity" => 519.926, "release_date" => "2024-11-29", "video" => false, "vote_average" => 6.6, "vote_count" => 120}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+[31mUnpermitted parameter: :genre_ids. Context: { controller: UsersController, action: add_favorite, request: #<ActionDispatch::Request:0x000001c795929240>, params: {"email" => "[FILTERED]", "movie" => {"backdrop_path" => "/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg", "movie_id" => 957119, "title" => "Sidelined: The QB and Me", "original_title" => "Sidelined: The QB and Me", "overview" => "Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?", "poster_path" => "/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg", "adult" => false, "original_language" => "en", "genre_ids" => [35, 10749], "popularity" => 519.926, "release_date" => "2024-11-29", "video" => false, "vote_average" => 6.6, "vote_count" => 120}, "controller" => "users", "action" => "add_favorite", "user" => {"email" => "[FILTERED]"}} }[0m
+  [1m[36mMovie Load (1.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."adult" = 0 AND "movies"."backdrop_path" = '/h3fwlwHotd3JfV13HdW0mxDcxPD.jpg' AND "movies"."movie_id" = '957119' AND "movies"."original_language" = 'en' AND "movies"."original_title" = 'Sidelined: The QB and Me' AND "movies"."overview" = 'Dallas, a burdened but headstrong dancer, is determined to get into the best dance school in the country—her late mother’s alma mater. However, that dream is suddenly derailed when the cheeky yet secretly grieving football star, Drayton, crashes into her life with a unique story of his own. Will the two of them be able to grow into their dreams together, or will their dreams be sidelined?' AND "movies"."popularity" = 519.926 AND "movies"."poster_path" = '/1oV2rq7PEuKILrBd9vBL9bChRYf.jpg' AND "movies"."release_date" = '2024-11-29' AND "movies"."title" = 'Sidelined: The QB and Me' AND "movies"."video" = 0 AND "movies"."vote_average" = 6.6 AND "movies"."vote_count" = 120 LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+  [1m[36mMovie Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 AND "movies"."movie_id" = '957119' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mUser::HABTM_Movies Create (3.8ms)[0m  [1m[32mINSERT INTO "movies_users" ("user_id", "movie_id") VALUES (11, 957119) /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:12:in 'UsersController#add_favorite'
+Completed 200 OK in 34ms (Views: 0.1ms | ActiveRecord: 5.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 23:29:57 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:54:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 11 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:56:in 'UsersController#favorites'
+Completed 200 OK in 9ms (Views: 5.3ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
