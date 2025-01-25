@@ -1,48 +1,131 @@
 import { useState, useEffect } from "react";
 import { Banner } from "../Banner/Banner";
 import './Home.css';
+import { lazy } from "react";
 import { Movie } from "../../interfaces/movie";
-// const MovieSwiper = React.lazy(() => import("../MovieSwiper/MovieSwiper"));
+const MovieSwiper =lazy(() => import("../MovieSwiper/MovieSwiper"));
 import { getFetchURLs } from "../../utils/URLS";
-import { getMovies } from "../../utils/moviesHelpers";
+
+import { useFetchMovies } from "../../hooks/useFetchMovies";
 export default function Home() {
-  const fetchURLS = getFetchURLs()
-  const [movies,setMovies]=useState<Movie[]>([])
+    const fetchURLS = getFetchURLs()
+    const { movies } = useFetchMovies(fetchURLS.popularMovies)
 
-  const [featuredMovie, setFeaturedMovie] = useState<Movie | null>(null);
+    const [featuredMovie, setFeaturedMovie] = useState<Movie | null>(null);
+    console.log(movies)
 
-  useEffect(() => {
-    updateMovies();
-  }, []);
+    useEffect(() => {
+        if (movies && movies.length > 0) {
+            const randomIndex = Math.floor(Math.random() * movies.length);
+            const selectedMovie = movies[randomIndex];
+            setFeaturedMovie(selectedMovie);
+        }
+    }, [movies]);
 
-  useEffect(() => {
-    if (movies && movies.length > 0) {
-      const randomIndex = Math.floor(Math.random() * movies.length);
-      const selectedMovie = movies[randomIndex];
-      setFeaturedMovie(selectedMovie);
+
+    if (movies.length === 0) {
+        return <div className="w-full h-screen bg-black flex items-center justify-center">
+            <div className="spinner"></div>
+        </div>
     }
-  }, [movies]);
 
-  const updateMovies = async () => {
-    const moviesData = await getMovies();
-    setMovies(moviesData);
-  };
+    return (
+        <div className="contenedorHome">
 
-  if (movies.length === 0) {
-    return <div className="w-full h-screen bg-black flex items-center justify-center">
-      <div className="spinner"></div>
-    </div>
-  }
+            {featuredMovie && (
+                <>
+                    <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
+                    <div className="contenedorPeliculas">
+                        <MovieSwiper
+                            URL={fetchURLS.popularMovies}
+                            title="Popular Movies"
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.topRatedMovies}
+                            title="Best Voted"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.actionMovies}
+                            title="Action"
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.adventureMovies}
+                            title="Adventure"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.animationMovies}
+                            title="Animation"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.comedyMovies}
+                            title="Comedy"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.crimeMovies}
+                            title="Crime"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.documentaryMovies}
+                            title="Documentary"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.dramaMovies}
+                            title="Drama"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.familyMovies}
+                            title="Family"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.fantasyMovies}
+                            title="Fantasy"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.historyMovies}
+                            title="History"
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.horrorMovies}
+                            title="Horror"
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.musicMovies}
+                            title="Music"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.mysteryMovies}
+                            title="Mystery"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.romanceMovies}
+                            title="Romance"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.scienceFictionMovies}
+                            title="Science Fiction"
+                            isLarge
+                        />
+                        <MovieSwiper
+                            URL={fetchURLS.thrillerMovies}
+                            title="Thriller"
+                            isLarge
+                        />
 
-  return (
-    <div className="contenedorHome">
-
-      {featuredMovie && (
-        <>
-          <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
-          
-        </>
-      )}
-    </div>
-  );
+                    </div>
+                </>
+            )}
+        </div>
+    );
 }

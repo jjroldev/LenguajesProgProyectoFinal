@@ -8,7 +8,7 @@ export const API_KEY = import.meta.env.VITE_API_KEY as string;
 export const BASE_URL_BACKEND = "http://127.0.0.1:3000"
 
 export const getFetchURLs = () => ({
-  popularMovies: `${BASE_URL_BACKEND}/movies/popular`,
+  popularMovies: `${BASE_URL_BACKEND}/movies/populars`,
   topRatedMovies: `${BASE_URL_BACKEND}/movies/top-rated`,
   actionMovies: `${BASE_URL_BACKEND}/movies/genre/28`,
   adventureMovies: `${BASE_URL_BACKEND}/movies/genre/12`,

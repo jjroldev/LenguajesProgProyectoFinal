@@ -1,15 +1,15 @@
 import Modal from "@mui/material/Modal";
 import YouTube from "react-youtube";
-import { MovieDetails } from "../../interfaces/movie";
+import { Movie } from "../../interfaces/movie";
 import useFetchTrailer from "../../hooks/usefetchVideo";
 interface VideoModalProps {
     open: boolean;
     onClose: () => void;
-    movie: MovieDetails | null;
+    movie: Movie | null;
 }
 
 const VideoModal: React.FC<VideoModalProps> = ({ open, onClose, movie }) => {
-    const trailer = useFetchTrailer(movie?.id)
+    const trailer = useFetchTrailer(movie?.movie_id)
     return (
         <Modal open={open} onClose={onClose}>
             {trailer ? (

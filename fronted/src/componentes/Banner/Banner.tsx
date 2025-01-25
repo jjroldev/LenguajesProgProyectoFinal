@@ -148,7 +148,7 @@ export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
                 <i className="fa-solid fa-play"></i> Play
             </button>
             <Suspense fallback={<div />}>
-                <VideoModal movie={fetchedDetails} open={open} onClose={handleClose} />
+                <VideoModal movie={movie} open={open} onClose={handleClose} />
             </Suspense>
             <button onClick={pasarMovie} className="boton-info-banner">
                 <i className="fa-solid fa-circle-info"></i> More Information
