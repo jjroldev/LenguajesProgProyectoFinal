@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     collection do
       post 'add_favorite', to: 'users#add_favorite'
       get 'favorites', to: 'users#favorites'
+      delete 'remove_favorite', to: 'users#remove_favorite'
+      delete 'destroy_by_email', to: 'users#destroy_by_email'
     end
   end
 end

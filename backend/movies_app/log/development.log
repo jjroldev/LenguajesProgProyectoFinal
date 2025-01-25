@@ -1904,3 +1904,223 @@ Processing by UsersController#favorites as HTML
 Completed 200 OK in 395ms (Views: 97.6ms | ActiveRecord: 0.6ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2025-01-24 21:34:20 -0500
+Started GET "/movies" for 127.0.0.1 at 2025-01-24 21:34:20 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MoviesApp'*/[0m
+Processing by MoviesController#index as HTML
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby34-x64/lib/ruby/gems/3.4.0/gems/railties-8.0.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.6ms | GC: 0.0ms)
+Completed 200 OK in 758ms (Views: 168.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  [1m[36mMovie Load (8.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 1070ms (Views: 97.9ms | ActiveRecord: 10.0ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 21:34:31 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 26ms (Views: 9.9ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/favorites?email=[FILTERED]" for 127.0.0.1 at 2025-01-24 21:34:36 -0500
+Processing by UsersController#favorites as HTML
+  Parameters: {"email" => "[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:29:in 'UsersController#favorites'
+  [1m[36mMovie Load (0.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" INNER JOIN "movies_users" ON "movies"."movie_id" = "movies_users"."movie_id" WHERE "movies_users"."user_id" = 1 /*action='favorites',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:31:in 'UsersController#favorites'
+Completed 200 OK in 250ms (Views: 88.4ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2025-01-24 21:34:41 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /*action='index',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:4:in 'UsersController#index'
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-24 21:42:06 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/movies"):
+  
+Started GET "/api/movies" for 127.0.0.1 at 2025-01-24 21:42:07 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/api/movies"):
+  
+Started GET "/movies" for 127.0.0.1 at 2025-01-24 21:42:36 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (4.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 656ms (Views: 650.0ms | ActiveRecord: 4.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:42:47 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (2.2ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 393ms (Views: 389.7ms | ActiveRecord: 2.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:45:22 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (1.6ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 72ms (Views: 69.9ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:45:23 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (1.3ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 63ms (Views: 61.4ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2025-01-24 21:45:39 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (1.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 49ms (Views: 47.9ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:48:25 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (1.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 63ms (Views: 60.8ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:48:25 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (2.1ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 76ms (Views: 74.1ms | ActiveRecord: 2.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:51:01 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (0.7ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 98ms (Views: 97.4ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:51:02 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (0.5ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 71ms (Views: 70.0ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:53:13 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='MoviesApp'*/[0m
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (7.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 197ms (Views: 68.3ms | ActiveRecord: 8.8ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/movies/" for 127.0.0.1 at 2025-01-24 21:53:14 -0500
+Processing by MoviesController#index as */*
+  [1m[36mMovie Load (1.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 58ms (Views: 56.6ms | ActiveRecord: 1.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 21:59:12 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'justun@hotmial' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method 'movie_params' for an instance of UsersController):
+  
+app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:00:30 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"title" => "Inception", "genre" => "Sci-Fi"}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method 'movie_params' for an instance of UsersController):
+  
+app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+Started GET "/movies" for 127.0.0.1 at 2025-01-24 22:02:15 -0500
+Processing by MoviesController#index as HTML
+  [1m[36mMovie Load (2.4ms)[0m  [1m[34mSELECT "movies".* FROM "movies" /*action='index',application='MoviesApp',controller='movies'*/[0m
+  ↳ app/controllers/movies_controller.rb:8:in 'MoviesController#index'
+Completed 200 OK in 73ms (Views: 69.1ms | ActiveRecord: 2.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/add_favorite" for ::1 at 2025-01-24 22:04:03 -0500
+Processing by UsersController#add_favorite as */*
+  Parameters: {"email" => "[FILTERED]", "movie" => {"adult" => false, "backdrop_path" => "/b85bJfrTOSJ7M5Ox0yp4lxIxdG1.jpg", "genre_ids" => [28, 878, 35, 10751], "movie_id" => 939243, "original_language" => "en", "original_title" => "Sonic the Hedgehog 3", "overview" => "Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.", "popularity" => 6277.745, "poster_path" => "/d8Ryb8AunYAuycVKDp5HpdWPKgC.jpg", "release_date" => "2024-12-19", "title" => "Sonic the Hedgehog 3", "video" => false, "vote_average" => 7.806, "vote_count" => 906}, "user" => {"email" => "[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'alice@example.com' LIMIT 1 /*action='add_favorite',application='MoviesApp',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:8:in 'UsersController#add_favorite'
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (undefined local variable or method 'movie_params' for an instance of UsersController):
+  
+app/controllers/users_controller.rb:9:in 'UsersController#add_favorite'
+Started GET "/users/add_favorite" for ::1 at 2025-01-24 22:04:18 -0500
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for UsersController):
+  
+actionpack (8.0.1) lib/abstract_controller/base.rb:158:in 'AbstractController::Base#process'
+actionpack (8.0.1) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.0.1) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:67:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:53:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:133:in 'block in ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'Array#each'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:126:in 'ActionDispatch::Journey::Router#find_routes'
+actionpack (8.0.1) lib/action_dispatch/journey/router.rb:34:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.0.1) lib/action_dispatch/routing/route_set.rb:908:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.0.1) lib/rails/engine/lazy_route_set.rb:68:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.1.8) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.1.8) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.1.8) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.0.1) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.1) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.1) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.1) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.1) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.1.8) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.1) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in 'Rack::Sendfile#call'
+actionpack (8.0.1) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.0.1) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (6.5.0) lib/puma/configuration.rb:279:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (6.5.0) lib/puma/request.rb:99:in 'block in Puma::Request#handle_request'
+puma (6.5.0) lib/puma/thread_pool.rb:389:in 'Puma::ThreadPool#with_force_shutdown'
+puma (6.5.0) lib/puma/request.rb:98:in 'Puma::Request#handle_request'
+puma (6.5.0) lib/puma/server.rb:468:in 'Puma::Server#process_client'
+puma (6.5.0) lib/puma/server.rb:249:in 'block in Puma::Server#run'
+puma (6.5.0) lib/puma/thread_pool.rb:166:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2025-01-24 22:04:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
