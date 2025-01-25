@@ -3,7 +3,8 @@ import { useAuth } from "../../context/AuthContext";
 import { getUsuarios, verificarCredenciales } from "../../utils/userHelpers";
 import { Modal, Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {User} from "../../interfaces/user";
+import { User } from "../../interfaces/user";
+import { useEmail } from "../../context/ExistsEmailContext";
 import "./Login.css";
 export default function Login() {
   const { login } = useAuth();
@@ -14,7 +15,10 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const {setCurrentUser} = useAuth()
+  const { setCurrentUser } = useAuth()
+
+  const { emailExists, setEmailExists } = useEmail();
+  console.log(emailExists)
 
   useEffect(() => {
     const fetchUsuarios = async () => {
@@ -26,7 +30,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const usuarioCredenciales:User|null =verificarCredenciales(email, password, usuarios)
+    const usuarioCredenciales: User | null = verificarCredenciales(email, password, usuarios)
     if (usuarioCredenciales) {
       setCurrentUser(usuarioCredenciales)
       login(usuarioCredenciales);
@@ -53,16 +57,26 @@ export default function Login() {
             <button className="button-enviar">Login</button>
           </div>
           <div className="suscripbirse">
-            <p>First time on Netflix? <span onClick={()=>{navigate('/register')}}>Subscribe now</span></p>
+            <p>First time on Netflix? <span onClick={() => { navigate('/register') }}>Subscribe now</span></p>
           </div>
         </form>
       </div>
 
       <Modal open={open} onClose={() => setOpen(false)}>
-        <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', p: 4 }}>
-          <Typography variant="h6">Credenciales incorrectas</Typography>
-          <Typography>El email o la contraseña son incorrectos.</Typography>
-        </Box>
+        <div className="contentEmailExists">
+          <h2>The email or password is incorrect</h2>
+          <p>Please log in to continue</p>
+        </div>
+      </Modal>
+
+
+
+      {/* Modal para email existente */}
+      <Modal open={emailExists} onClose={() => setEmailExists(false)}>
+        <div className="contentEmailExists">
+          <h2>Email already exists</h2>
+          <p>Please log in to continue</p>
+        </div>
       </Modal>
     </>
   );

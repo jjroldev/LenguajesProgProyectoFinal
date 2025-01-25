@@ -4,6 +4,7 @@ import './Register.css';
 import { useEffect, useState } from 'react';
 import { getUsuarios, guardarUsuario } from '../../utils/userHelpers';
 import { useAuth } from '../../context/AuthContext';
+import { useEmail } from '../../context/ExistsEmailContext';
 export default function Register() {
     const {setCurrentUser}=useAuth()
     const { login } = useAuth();
@@ -13,6 +14,9 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [usuarios, setUsuarios] = useState<User[]>([]);
     const navigate = useNavigate();
+
+    const {setEmailExists } = useEmail(); 
+
 
     useEffect(() => {
         const fetchUsuarios = async () => {
@@ -26,12 +30,13 @@ export default function Register() {
     const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const user: User = { name, last_name: lastName, email, password };
-        const success = await guardarUsuario(user, usuarios,navigate);
+        const success = await guardarUsuario(user, usuarios, navigate);
         if (success) {
             setCurrentUser(user);
             login(user); 
             navigate("/home");
         } else {
+            setEmailExists(true)
             console.error("Error al registrar usuario");
         }
     };

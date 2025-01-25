@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { PrivateRoutes } from './componentes/PrivateRoutes';
 import { PublicRoutes } from './componentes/PublicRoutes';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { EmailProvider } from './context/ExistsEmailContext';
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
@@ -18,9 +19,11 @@ function AppRoutes() {
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <EmailProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </EmailProvider>
     </AuthProvider>
   );
 }
