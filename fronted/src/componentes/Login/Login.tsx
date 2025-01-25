@@ -47,6 +47,14 @@ export default function Login() {
           <div className="headerForm">
             <h2>Login</h2>
           </div>
+          <div className={`${open ? "contentEmailExists " : "notVisible"}`}>
+            <h2>The email or password is incorrect</h2>
+            <p>Please log in to continue</p>
+          </div>
+          <div className={`${emailExists ? "contentEmailExists " : "notVisible"}`}>
+            <h2>Email already exists</h2>
+            <p>Please log in to continue</p>
+          </div>
           <div className="contenedorInput">
             <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email@example.com" minLength={5} />
           </div>
@@ -61,23 +69,6 @@ export default function Login() {
           </div>
         </form>
       </div>
-
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <div className="contentEmailExists">
-          <h2>The email or password is incorrect</h2>
-          <p>Please log in to continue</p>
-        </div>
-      </Modal>
-
-
-
-      {/* Modal para email existente */}
-      <Modal open={emailExists} onClose={() => setEmailExists(false)}>
-        <div className="contentEmailExists">
-          <h2>Email already exists</h2>
-          <p>Please log in to continue</p>
-        </div>
-      </Modal>
     </>
   );
 }
