@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Home } from './Home/Home';
+import Home from './Home/Home';
 export const PrivateRoutes = () => {
     return (
         <Routes>
