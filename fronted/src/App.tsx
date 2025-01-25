@@ -1,22 +1,26 @@
-import './App.css'
-import { PageLogin } from './componentes/PageLogin/PageLogin';
-import { PageRegister } from './componentes/PageRegister/PageRegister';
-import { BrowserRouter, Routes } from 'react-router-dom';
-import { Route } from 'react-router-dom';
-import { Home } from './componentes/Home/Home';
-function App() {
+import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { PrivateRoutes } from './componentes/PrivateRoutes';
+import { PublicRoutes } from './componentes/PublicRoutes';
+import { AuthProvider, useAuth } from './context/AuthContext';
+
+function AppRoutes() {
+  const { isLoggedIn } = useAuth();
 
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route index path="/" element={<PageLogin />} />
-          <Route path="/register" element={<PageRegister />} />
-          <Route path="/home" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+    <Routes>
+      {isLoggedIn ? <Route path="/*" element={<PrivateRoutes />} /> : <Route path="/*" element={<PublicRoutes />} />}
+      <Route path="*" element={<Navigate to={isLoggedIn ? "/home" : "/login"} replace />} />
+    </Routes>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}

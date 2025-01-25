@@ -92,3 +92,9 @@ input:focus {
 .suscripbirse span:hover{
     text-decoration: underline;
 }
+
+
+.modal-title span{
+    font-weight: bold;
+    color: #000;
+}
