@@ -17,7 +17,6 @@ export default function Login() {
   const { setCurrentUser } = useAuth()
 
   const { emailExists } = useEmail();
-  console.log(emailExists)
 
   useEffect(() => {
     const fetchUsuarios = async () => {

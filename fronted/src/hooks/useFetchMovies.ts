@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Movie } from "../interfaces/movie";
+import toast from "react-hot-toast";
 
 export const useFetchMovies = (url: string) => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -13,6 +14,7 @@ export const useFetchMovies = (url: string) => {
       const response = await fetch(url);
       if (!response.ok) {
         setMovies([]);
+        toast.error("No hay coincidencias en tu busqueda, te recomendamos estas películas")
         throw new Error('Error fetching data');
       }
       const data = await response.json();

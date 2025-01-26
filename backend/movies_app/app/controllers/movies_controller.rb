@@ -36,9 +36,15 @@ class MoviesController < ApplicationController
   end
 
   def search_by_name
-    name = params[:name].downcase
-    movies = Movie.where('LOWER(title) LIKE ?', "%#{name}%")
-
+    name = params[:name].downcase.strip
+    normalized_name = name.gsub(/[^a-z0-9\s]/, '')
+    keywords = normalized_name.split
+  
+    query = keywords.map { |word| "LOWER(REPLACE(title, '-', '')) LIKE ?" }.join(' AND ')
+    query_params = keywords.map { |word| "%#{word}%" }
+  
+    movies = Movie.where(query, *query_params)
+  
     if movies.any?
       render json: movies, status: :ok
     else
