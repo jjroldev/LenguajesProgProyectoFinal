@@ -7,11 +7,11 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useEmail } from '../../context/ExistsEmailContext';
 export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=false }: { logoBuscar: boolean, menu?: boolean, perfil?: boolean,logoGrande?:boolean }) {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // const handleSearchClick = () => {
-    //     navigate("/buscar");
-    // };
+    const handleSearchClick = () => {
+        navigate("/buscar");
+    };
 
     const {currentUser,logout}=useAuth()
     const {setEmailExists}=useEmail()
@@ -50,7 +50,7 @@ export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=fal
             <div className='perfilYLupaContenedor'>
                 {logoBuscar && (<i
                     className="fa-solid fa-magnifying-glass lupa"
-                // {onClick={handleSearchClick} 
+                    onClick={handleSearchClick} 
                 >
                 </i>)
                 }
