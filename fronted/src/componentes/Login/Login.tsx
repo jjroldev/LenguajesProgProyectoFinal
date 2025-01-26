@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { getUsuarios, verificarCredenciales } from "../../utils/userHelpers";
-import { Modal, Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../interfaces/user";
 import { useEmail } from "../../context/ExistsEmailContext";
@@ -17,7 +16,7 @@ export default function Login() {
 
   const { setCurrentUser } = useAuth()
 
-  const { emailExists, setEmailExists } = useEmail();
+  const { emailExists } = useEmail();
   console.log(emailExists)
 
   useEffect(() => {

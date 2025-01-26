@@ -5,7 +5,7 @@ import Register from '../Register/Register'
 export function Base({isLogin}:{isLogin?:boolean}) {
     return (
         <>
-            <NavBar logoBuscar={false} />
+            <NavBar logoBuscar={false} logoGrande={true} />
 
             <div className="loginContainer">
                 {

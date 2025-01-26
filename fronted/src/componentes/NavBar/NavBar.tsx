@@ -1,11 +1,12 @@
 import './NavBar.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-// import { useNavigate } from "react-router-dom";
-// import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-export function NavBar({ logoBuscar, menu = false, perfil = false }: { logoBuscar: boolean, menu?: boolean, perfil?: boolean }) {
+import { useEmail } from '../../context/ExistsEmailContext';
+export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=false }: { logoBuscar: boolean, menu?: boolean, perfil?: boolean,logoGrande?:boolean }) {
     // const navigate = useNavigate();
 
     // const handleSearchClick = () => {
@@ -13,6 +14,7 @@ export function NavBar({ logoBuscar, menu = false, perfil = false }: { logoBusca
     // };
 
     const {currentUser,logout}=useAuth()
+    const {setEmailExists}=useEmail()
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -34,17 +36,16 @@ export function NavBar({ logoBuscar, menu = false, perfil = false }: { logoBusca
                 <img
                     src="../../../public/JUSTFLIX.svg"
                     alt="Logo"
+                    className={`${logoGrande? "logoGrande":""}`}
                 />
                 {
                     menu && (
                         <>
-                            <a href="" className='textInicio'>Home</a>
-                            <a href="" className='textInicio'>Favorites</a>
+                            <Link className='textInicio' to="/">Home</Link>
+                            <Link className="textInicio" to="/miLista">Favorites</Link>
                         </>
                     )
                 }
-                {/* <Link className='textInicio' to="/">Home</Link>
-                <Link className="textInicio" to="/favoritos">Favorites</Link> */}
             </div>
             <div className='perfilYLupaContenedor'>
                 {logoBuscar && (<i
@@ -64,6 +65,7 @@ export function NavBar({ logoBuscar, menu = false, perfil = false }: { logoBusca
                                     <NavDropdown.Item className='drop'><span>{currentUser?.name}</span></NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item className='drop' onClick={()=>{
+                                        setEmailExists(false)
                                         logout()
                                     }}>
                                         <span className='logOut'>Log out </span>

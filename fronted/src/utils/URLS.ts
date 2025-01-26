@@ -9,7 +9,7 @@ export const BASE_URL_BACKEND = "http://127.0.0.1:3000"
 
 export const getFetchURLs = () => ({
   popularMovies: `${BASE_URL_BACKEND}/movies/populars`,
-  topRatedMovies: `${BASE_URL_BACKEND}/movies/top-rated`,
+  topRatedMovies: `${BASE_URL_BACKEND}/movies/top_rated`,
   actionMovies: `${BASE_URL_BACKEND}/movies/genre/28`,
   adventureMovies: `${BASE_URL_BACKEND}/movies/genre/12`,
   animationMovies: `${BASE_URL_BACKEND}/movies/genre/16`,
