@@ -16,7 +16,8 @@
   height: 56px;
   border-radius: 50%;
   border: 9px solid;
-  border-color: #dbdcef;
+  border-color: #ffffff;
+  background-color: #000;
   border-right-color: #ffe947;
   animation: spinner-d3wgkg 1s infinite linear;
 }

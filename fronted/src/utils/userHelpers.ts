@@ -73,8 +73,12 @@ export const deleteUser = async (email: string) => {
 
 
 
-export const addMovieFavoriteOfUser = async (movie: Movie, email: string) => {
+export const addMovieFavoriteOfUser = async (
+    movie: Movie,
+    email: string,
+) => {
     try {
+
         const response = await fetch("http://localhost:3000/users/add_favorite", {
             method: "POST",
             headers: {
@@ -89,7 +93,6 @@ export const addMovieFavoriteOfUser = async (movie: Movie, email: string) => {
         if (response.ok) {
             toast.success(`${movie.title} agregada a mi lista`);
         } else {
-            console.error("error al intentar agregar la pelicula a mi lista")
             toast.error(`Error al intentar agregar ${movie.title}`);
         }
     } catch (error) {
@@ -97,8 +100,14 @@ export const addMovieFavoriteOfUser = async (movie: Movie, email: string) => {
     }
 };
 
-export const removeMovieFavoriteOfUser = async (email: string, movie: Movie) => {
+export const removeMovieFavoriteOfUser = async (
+    email: string|undefined,
+    movie: Movie,
+    updateFavorites: (movie: Movie) => void
+) => {
     try {
+        updateFavorites(movie);
+
         const response = await fetch("http://localhost:3000/users/remove_favorite", {
             method: "DELETE",
             headers: {
@@ -114,7 +123,6 @@ export const removeMovieFavoriteOfUser = async (email: string, movie: Movie) => 
             toast.success(`${movie.title} removida de mi lista`);
         } else {
             toast.error(`Error al intentar remover ${movie.title}`);
-
         }
     } catch (error) {
         toast.error(`Error al intentar remover ${movie.title}`);
@@ -123,8 +131,8 @@ export const removeMovieFavoriteOfUser = async (email: string, movie: Movie) => 
 
 
 export const verificarCredenciales = (
-    email: string, 
-    password: string, 
+    email: string,
+    password: string,
     usuarios: User[]
 ): User | null => {
     return usuarios.find(user => user.email === email && user.password === password) || null;

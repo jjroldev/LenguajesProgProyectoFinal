@@ -7,12 +7,30 @@ import { Movie } from "../../interfaces/movie";
 import { URL_IMAGE_BACKDROP } from "../../utils/URLS";
 import { URL_IMAGE_POSTER } from "../../utils/URLS";
 import { Suspense } from "react";
-import { addMovieFavoriteOfUser, removeMovieFavoriteOfUser } from "../../utils/userHelpers";
+import { addMovieFavoriteOfUser } from "../../utils/userHelpers";
 const VideoModal = lazy(() => import('../ModalVideo/ModalVideo'));
 import "./CardMovie.css";
 import { useAuth } from "../../context/AuthContext";
+
+interface CardMovieProps {
+    movie: Movie;
+    isLarge?: boolean;
+    doDelete?: boolean;
+    onRemoveFavorite?: (movie: Movie) => void;
+}
 const CardMovie = React.memo(
-    ({ movie, isLarge, doDelete = false }: { movie: Movie; isLarge?: boolean, doDelete?: boolean }) => {
+    ({
+        movie,
+        isLarge,
+        doDelete = false,
+        onRemoveFavorite,
+    }: CardMovieProps) => {
+
+
+        const handleRemove = () => {
+            onRemoveFavorite && onRemoveFavorite(movie);
+        };
+
         const { currentUser } = useAuth()
         const [open, setOpen] = useState(false);
         const [isVisible, setIsVisible] = useState(false);
@@ -82,15 +100,11 @@ const CardMovie = React.memo(
                                 }}>
                                     <i className="fa-solid fa-heart"></i>
                                 </button>
-                                {
-                                    doDelete && (
-                                        <button onClick={() => {
-                                            currentUser?.email && removeMovieFavoriteOfUser(currentUser.email,movie)
-                                        }}>
-                                            <i className="fa-solid fa-trash"></i>
-                                        </button>
-                                    )
-                                }
+                                {doDelete && (
+                                    <button onClick={handleRemove}>
+                                        <i className="fa-solid fa-trash"></i>
+                                    </button>
+                                )}
                             </div>
                         </div>
                     )}
