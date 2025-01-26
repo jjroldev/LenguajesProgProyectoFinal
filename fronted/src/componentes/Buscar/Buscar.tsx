@@ -2,7 +2,7 @@ import './Buscar.css';
 import { BASE_URL_BACKEND } from '../../utils/URLS';
 import { useState, useMemo } from 'react';
 import CardMovie from '../CardMovie/CardMovie';
-import { Lupa } from '../Lupa/Lupa';
+import { InputBuscar } from '../InputBuscar/inputBuscar';
 import { Movie } from '../../interfaces/movie';
 import { useFetchMovies } from '../../hooks/useFetchMovies';
 import { Banner } from '../Banner/Banner';
@@ -69,7 +69,7 @@ export default function Buscar() {
             isShort={true}
           />
             <div className="contenedorBuscar">
-              <Lupa
+              <InputBuscar
                 placeholder={'Search Movies'}
                 onSubmit={handleSearch}
               />

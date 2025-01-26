@@ -62,7 +62,7 @@ export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=fal
                                     <img src="../../../public/avatar1.png" alt="" />
                                 </div>
                                 <NavDropdown title="" id="navbarScrollingDropdown">
-                                    <NavDropdown.Item className='drop'><span>{currentUser?.name}</span></NavDropdown.Item>
+                                    <NavDropdown.Item className='drop'><span onClick={()=>{navigate("/miLista")}}>{currentUser?.name}</span></NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item className='drop' onClick={()=>{
                                         setEmailExists(false)

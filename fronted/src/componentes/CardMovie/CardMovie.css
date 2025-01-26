@@ -94,4 +94,9 @@
   .heartVisible {
     display: none !important;
   }
+
+
+  .corazon{
+    color: red;
+  }
   

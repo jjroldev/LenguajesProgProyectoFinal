@@ -22,7 +22,7 @@ export function MiLista() {
 
   return (
     <>
-      <NavBar logoBuscar={true} menu={true} />
+      <NavBar logoBuscar={true} menu={true} perfil={true}/>
       <div className="favorites">
         <div className="contenedorFavoritas">
           <h2 className="tituloFavoritas">Mi Lista</h2>

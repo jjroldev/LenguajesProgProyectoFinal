@@ -98,7 +98,7 @@ const CardMovie = React.memo(
                                 <button className={doDelete ? "heartVisible" : ""} onClick={() => {
                                     currentUser?.email && (addMovieFavoriteOfUser(movie, currentUser.email))
                                 }}>
-                                    <i className="fa-solid fa-heart"></i>
+                                    <i className="corazon fa-solid fa-heart"></i>
                                 </button>
                                 {doDelete && (
                                     <button onClick={handleRemove}>
