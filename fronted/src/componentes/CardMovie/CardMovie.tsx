@@ -69,7 +69,7 @@ const CardMovie = React.memo(
             <div ref={imgRef} className={`contenedor-poster ${isLarge ? "large" : ""}`}>
                 <div className={`cardContainerImage ${isLarge ? "backdrop" : "poster"}`}>
                     <div
-                        className={`bg-gray-800 h-full w-full absolute inset-0 ${imageLoaded ? "opacity-0" : "opacity-100"
+                        className={`fondoCardMovie h-full w-full absolute inset-0 ${imageLoaded ? "opacity-0" : "opacity-100"
                             } transition-opacity duration-500`}
                     ></div>
                     {isVisible && (
@@ -95,10 +95,12 @@ const CardMovie = React.memo(
                                 <button onClick={pasarMovie}>
                                     <FaInfo size={16} />
                                 </button>
-                                <button className={doDelete ? "heartVisible" : ""} onClick={() => {
-                                    currentUser?.email && (addMovieFavoriteOfUser(movie, currentUser.email))
-                                }}>
-                                    <i className="corazon fa-solid fa-heart"></i>
+                                <button className={doDelete ? "heartVisible" : ""} >
+                                    <i
+                                        onClick={() => {
+                                            currentUser?.email && (addMovieFavoriteOfUser(movie, currentUser.email))
+                                        }} className="corazon fa-solid fa-heart">
+                                    </i>
                                 </button>
                                 {doDelete && (
                                     <button onClick={handleRemove}>

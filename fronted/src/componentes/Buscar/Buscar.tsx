@@ -2,15 +2,21 @@ import './Buscar.css';
 import { BASE_URL_BACKEND } from '../../utils/URLS';
 import { useState, useMemo } from 'react';
 import CardMovie from '../CardMovie/CardMovie';
-import { InputBuscar } from '../InputBuscar/inputBuscar';
+import { InputBuscar } from '../InputBuscar/InputBuscar';
 import { Movie } from '../../interfaces/movie';
 import { useFetchMovies } from '../../hooks/useFetchMovies';
 import { Banner } from '../Banner/Banner';
 import { getFetchURLs } from '../../utils/URLS';
+import { NavBar } from '../NavBar/NavBar';
+import { useEffect } from 'react';
 export default function Buscar() {
   const [nameMovie, setNameMovie] = useState(() => {
     return sessionStorage.getItem(`nameMovie`) || '';
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const fetchUrls = getFetchURLs()
 
@@ -27,8 +33,6 @@ export default function Buscar() {
     [moviesPopulars]
   );
 
-  console.log(movies)
-
   const movieBanner = validMovies[0] || validMoviesPopular[0];
 
   const handleSearch = (value: string) => {
@@ -40,9 +44,14 @@ export default function Buscar() {
     movies.map((movie, index) => <CardMovie key={index} movie={movie} />);
 
   const loadingSpinner = (
-    <div className="w-full h-screen bg-black flex items-center justify-center">
-      <div className="spinner"></div>
-    </div>
+    <>
+      <NavBar perfil={true} menu={true} logoBuscar={true} />
+      <div className="w-full h-screen bg-black flex items-center justify-center">
+        <div className="spinner"></div>
+      </div>
+      <div className='contenedorPeliculasBuscar'></div>
+    </>
+
   );
 
   const renderContent = () => {

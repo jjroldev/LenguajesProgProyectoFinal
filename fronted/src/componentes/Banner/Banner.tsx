@@ -1,27 +1,26 @@
 import "./Banner.css";
 import { NavBar } from "../NavBar/NavBar";
-import { URL_IMAGE_lOGO,URL_IMAGE_BANNER } from "../../utils/URLS";
-import { useCallback } from "react";
+import { URL_IMAGE_lOGO, URL_IMAGE_BANNER } from "../../utils/URLS";
+import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router";
 import { Suspense, lazy } from "react";
 const CarouselBoostrap = lazy(() => import('../CarouselBoostrap/CarouselBoostrap'));
 const VideoModal = lazy(() => import('../ModalVideo/ModalVideo'));
-import {Movie } from "../../interfaces/movie"; 
+import { Movie } from "../../interfaces/movie";
 import useFetchMovieDetails from "../../hooks/useFetchMovieWithDetail";
 import useFetchProviders from "../../hooks/useFetchProviders";
-import useFetchLogo from "../../hooks/useFetchLogo";
 import { responsiveCredits } from "../../utils/ResponsiveCarousel";
 import Carousel from "react-multi-carousel";
 
-interface BannerProps{
-    movie: Movie; logoBuscar: boolean, isShort: boolean, isDetail?: boolean
+interface BannerProps {
+    movie: Movie | null; logoBuscar: boolean, isShort: boolean, isDetail?: boolean
 }
-export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
+export function Banner({ movie, logoBuscar, isShort, isDetail }: BannerProps) {
     const [open, setOpen] = React.useState(false);
-    const { movie: fetchedDetails, isLoading } = useFetchMovieDetails(movie.movie_id);
-    const { logoPath } = useFetchLogo(movie?.movie_id);
-    const { movieProviders } = useFetchProviders(movie.movie_id)
+    const { movie: fetchedDetails, isLoading } = useFetchMovieDetails(movie?.movie_id);
+    const { movieProviders } = useFetchProviders(movie?.movie_id)
+    const [logoPath, setLogoPath] = useState<string|undefined>("")
     const navigate = useNavigate();
     const handleOpen = useCallback(() => setOpen(true), []);
     const handleClose = useCallback(() => setOpen(false), []);
@@ -29,11 +28,21 @@ export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
         navigate("/info", { state: { movie } });
     }, [navigate, movie]);
 
-    
-    if ((!movie || isLoading)) {
+    useEffect(() => {
+        const logoPathq = fetchedDetails?.images.logos.find((l: { iso_639_1: string }) => l.iso_639_1 === "en")?.file_path ||
+            fetchedDetails?.images.logos[0].file_path;
+        setLogoPath(logoPathq)
+    }, [fetchedDetails])
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+
+    if ((!movie || isLoading || !fetchedDetails || !movieProviders)) {
         return (
-            <div className={`header ${isShort ? "header-short" : ""} bg-gray-800`}>
-                <NavBar logoBuscar={logoBuscar} />
+            <div className={`header ${isShort ? "header-short" : ""} bg-black`}>
+                <NavBar perfil={true} menu={true} logoBuscar={logoBuscar} />
             </div>
         )
     }
@@ -135,7 +144,7 @@ export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
                             </div>
                         }
                     >
-                        <CarouselBoostrap movie={fetchedDetails} isPoster={true}/>
+                        <CarouselBoostrap movie={fetchedDetails} isPoster={true} />
                     </Suspense>
                 </div>
                 {renderProviders(movieProviders)}

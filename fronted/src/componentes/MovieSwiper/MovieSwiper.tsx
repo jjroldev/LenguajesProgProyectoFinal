@@ -7,8 +7,9 @@ import { useFetchMovies } from "../../hooks/useFetchMovies";
 import "./MovieSwiper.css";
 
 import { responsive } from "../../utils/ResponsiveCarousel";
+import { SkeletonCarousel } from "../SkeletonMovieSwiper.tsx/SkeletonCarousel";
 const MovieSwiper = React.memo(
-  ({ URL, title, isLarge }: { URL: string; title: string; isLarge?: boolean }) => {
+  ({ URL, title, isLarge=false }: { URL: string; title: string; isLarge?: boolean }) => {
     const { movies, isLoading } = useFetchMovies(URL);
 
     const renderMovies = useCallback(
@@ -28,7 +29,7 @@ const MovieSwiper = React.memo(
     );
 
     if (isLoading) {
-      return null
+      return <SkeletonCarousel isLarge={isLarge} numMovies={20} title={title}/>
     }
 
     return (

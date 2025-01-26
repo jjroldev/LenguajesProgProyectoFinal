@@ -23,6 +23,14 @@
     padding: 0;
 }
 
+.favoritasContainerSpinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    min-width: 100%;
+}
+
 .favoritasContainer.empty {
     display: flex;
     justify-content: center;

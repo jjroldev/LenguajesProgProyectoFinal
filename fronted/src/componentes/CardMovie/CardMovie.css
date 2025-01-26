@@ -96,7 +96,11 @@
   }
 
 
-  .corazon{
+  .corazon:hover{
     color: red;
   }
   
+
+  .fondoCardMovie{
+    background-color: #1a1a1a;
+  }

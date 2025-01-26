@@ -5,16 +5,17 @@ import { lazy } from "react";
 import { Movie } from "../../interfaces/movie";
 const MovieSwiper = lazy(() => import("../MovieSwiper/MovieSwiper"));
 import { getFetchURLs } from "../../utils/URLS";
+import { NavBar } from "../NavBar/NavBar";
 
 import { useFetchMovies } from "../../hooks/useFetchMovies";
 export default function Home() {
     const fetchURLS = getFetchURLs()
-    const { movies } = useFetchMovies(fetchURLS.popularMovies)
+    const { movies, isLoading } = useFetchMovies(fetchURLS.popularMovies)
 
     const [featuredMovie, setFeaturedMovie] = useState<Movie | null>(null);
 
     useEffect(() => {
-        if (movies && movies.length > 0) {
+        if (!isLoading) {
             const randomIndex = Math.floor(Math.random() * movies.length);
             const selectedMovie = movies[randomIndex];
             setFeaturedMovie(selectedMovie);
@@ -22,20 +23,20 @@ export default function Home() {
     }, [movies]);
 
 
-    if (movies.length === 0) {
-        return <div className="w-full h-screen bg-black flex items-center justify-center">
-            <div className="spinner"></div>
-        </div>
+    if (isLoading) {
+        return (
+            <>
+                <NavBar perfil={true} menu={true} logoBuscar={true} />
+                <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
+                <div className="contenedorPeliculas">
+                </div>
+            </>
+        )
     }
 
     return (
         <div className="contenedorHome">
-
-            {featuredMovie && (
-                <>
-                    <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
-                </>
-            )}
+            <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
             <div className="contenedorPeliculas">
                 <MovieSwiper
                     URL={fetchURLS.popularMovies}

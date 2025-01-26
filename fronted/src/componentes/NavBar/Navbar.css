@@ -17,12 +17,12 @@
   }
   
   .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.8);
   }
   
 
 .navbar img {
-    width: 10vw;
+    width: 8vw;
     height: auto;
 }
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BASE_URL,API_KEY } from "../utils/URLS";
-const useFetchProviders = (movieId: number) => {
+const useFetchProviders = (movieId: number|undefined) => {
   const [movieProviders, setMovieProviders] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
