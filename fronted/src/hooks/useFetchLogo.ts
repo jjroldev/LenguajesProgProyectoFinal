@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BASE_URL,API_KEY } from "../utils/URLS";
-const useFetchLogo = (movieId: number) => {
+const useFetchLogo2 = (movieId: number) => {
   const [logoPath, setLogoPath] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -43,4 +43,4 @@ const useFetchLogo = (movieId: number) => {
   return { logoPath, isLoading };
 };
 
-export default useFetchLogo;
+export default useFetchLogo2;

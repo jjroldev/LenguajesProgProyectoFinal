@@ -1,4 +1,4 @@
-.contenedorHome{
+.contenedorHome {
     height: 100%;
     background-color: #000000;
     display: flex;
@@ -17,44 +17,44 @@
     background-color: #0000;
     box-sizing: border-box;
     min-height: 400px;
-  }
+}
 
-  .containerSpinner{
+.containerSpinner {
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #000000;
-  }
+}
 
-  @media (max-width: 1024px) {
-    .contenedorPeliculas{
+@media (max-width: 1024px) {
+    .contenedorPeliculas {
         padding-left: 25px;
         margin-top: -90px;
     }
 
-    .cuerpoBanner{
+    .cuerpoBanner {
         padding-left: 25px;
     }
 
-    .navbar{
+    .navbar {
         padding: 0 25px;
     }
 
-  }
+}
 
-  @media (max-width: 768px) {
-    .contenedorPeliculas{
+@media (max-width: 768px) {
+    .contenedorPeliculas {
         padding-left: 18px;
         margin-top: -85px;
     }
 
-    .cuerpoBanner{
+    .cuerpoBanner {
         padding-left: 18px;
     }
 
-    .navbar{
+    .navbar {
         padding: 0 18px;
     }
-  }
+}

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get 'populars'
       get 'top_rated'
       get 'genre/:id', to: 'movies#by_genre', as: 'by_genre'
+      get 'buscar/:name', to: 'movies#search_by_name', as: 'search_by_name'
     end
   end
 

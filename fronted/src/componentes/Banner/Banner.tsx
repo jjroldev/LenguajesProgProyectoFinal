@@ -15,13 +15,13 @@ import { responsiveCredits } from "../../utils/ResponsiveCarousel";
 import Carousel from "react-multi-carousel";
 
 interface BannerProps{
-    movie: any; logoBuscar: boolean, isShort: boolean, isDetail?: boolean
+    movie: Movie; logoBuscar: boolean, isShort: boolean, isDetail?: boolean
 }
 export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
     const [open, setOpen] = React.useState(false);
-    const { movie: fetchedDetails, isLoading } = useFetchMovieDetails(movie.id);
-    const { logoPath } = useFetchLogo(movie?.id);
-    const { movieProviders } = useFetchProviders(movie.id)
+    const { movie: fetchedDetails, isLoading } = useFetchMovieDetails(movie.movie_id);
+    const { logoPath } = useFetchLogo(movie?.movie_id);
+    const { movieProviders } = useFetchProviders(movie.movie_id)
     const navigate = useNavigate();
     const handleOpen = useCallback(() => setOpen(true), []);
     const handleClose = useCallback(() => setOpen(false), []);
@@ -31,7 +31,7 @@ export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
 
     if ((!movie || isLoading)) {
         return (
-            <div className={`header ${isShort ? "header-short" : ""} bg-gray-800`}>
+            <div className={`header ${isShort ? "header-short" : ""}`}>
                 <NavBar logoBuscar={logoBuscar} />
             </div>
         )

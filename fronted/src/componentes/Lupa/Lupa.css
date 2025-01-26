@@ -1,0 +1,68 @@
+/* Contenedor del formulario */
+.form-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Contenedor del input */
+  .input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Ícono de la lupa */
+  .icon-container {
+    position: absolute;
+    left: 0;
+    top: 13px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    color: white;
+  }
+  
+  .search-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Estilos del input */
+  .search-input {
+    background-color: #000;
+    border: 1px solid #4b5563;
+    color: white;
+    font-size: 14px;
+    border-radius: 0.5rem;
+    padding: 10px 10px 10px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+  
+  .search-input::placeholder {
+    color: #9ca3af;
+  }
+  
+  .search-input:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Modo oscuro (opcional si lo necesitas) */
+  .search-input.dark-mode {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: white;
+  }
+  
+  .search-input.dark-mode::placeholder {
+    color: #9ca3af;
+  }
+  
+  .search-input.dark-mode:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+  

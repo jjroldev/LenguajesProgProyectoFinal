@@ -1,33 +1,33 @@
 import './Buscar.css';
-import { API_KEY, BASE_URL } from '../../utils/URLS';
+import {BASE_URL_BACKEND } from '../../utils/URLS';
 import { useState, useMemo } from 'react';
 import CardMovie from '../CardMovie/CardMovie';
 import { Lupa } from '../Lupa/Lupa';
 import { Movie } from '../../interfaces/movie';
-// import { useFetchMovies } from '../../hooks/useFetchMovies';
-import { useFetchMovies } from '../../hooks/useFetchMovies2';
-// import { useLanguage } from '../../context/LanguageContext';
+import { useFetchMovies } from '../../hooks/useFetchMovies';
 import { Banner } from '../Banner/Banner';
+import { getFetchURLs } from '../../utils/URLS';
 export default function Buscar() {
-//   const { language } = 'es_EC';
   const [nameMovie, setNameMovie] = useState(() => {
     return sessionStorage.getItem(`nameMovie`) || '';
   });
 
-  const fetchPopular = `${BASE_URL}/discover/movie?api_key=${API_KEY}`;
-  const fetchSearch = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${nameMovie}`;
+  const fetchUrls=getFetchURLs()
+
+  const fetchPopular = `${fetchUrls.popularMovies}`;
+  const fetchSearch = `${BASE_URL_BACKEND}/movies/buscar/${nameMovie}`;
   const fetchURL = nameMovie ? fetchSearch : fetchPopular;
 
   const { movies } = useFetchMovies(fetchURL);
   const { movies: moviesPopulars } = useFetchMovies(fetchPopular);
-
-  console.log(movies);
 
   const validMovies = useMemo(() => movies.filter((movie) => movie.backdrop_path), [movies]);
   const validMoviesPopular = useMemo(
     () => moviesPopulars.filter((movie) => movie.backdrop_path),
     [moviesPopulars]
   );
+
+  console.log(movies)
 
   const movieBanner = validMovies[0] || validMoviesPopular[0];
 
@@ -40,7 +40,7 @@ export default function Buscar() {
     movies.map((movie, index) => <CardMovie key={index} movie={movie} />);
 
   const loadingSpinner = (
-    <div className="w-full h-full min-h-screen bg-black flex items-center justify-center">
+    <div className="containerSpinner">
       <div className="spinner"></div>
     </div>
   );

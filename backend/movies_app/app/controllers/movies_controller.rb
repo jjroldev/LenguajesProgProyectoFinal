@@ -35,6 +35,17 @@ class MoviesController < ApplicationController
     end
   end
 
+  def search_by_name
+    name = params[:name].downcase
+    movies = Movie.where('LOWER(title) LIKE ?', "%#{name}%")
+
+    if movies.any?
+      render json: movies, status: :ok
+    else
+      render json: {}, status: :not_found
+    end
+  end
+
   private
 
   def movie_params

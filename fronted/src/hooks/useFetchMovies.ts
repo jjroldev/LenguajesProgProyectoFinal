@@ -11,6 +11,10 @@ export const useFetchMovies = (url: string) => {
       setIsLoading(true);
 
       const response = await fetch(url);
+      if (!response.ok) {
+        setMovies([]);
+        throw new Error('Error fetching data');
+      }
       const data = await response.json();
 
       setMovies(data);
