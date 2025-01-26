@@ -1,5 +1,6 @@
 import { User } from "../interfaces/user";
 import { Movie } from "../interfaces/movie";
+import toast from "react-hot-toast";
 export const getUsuarios = async () => {
     try {
         const response = await fetch("http://localhost:3000/users", {
@@ -86,12 +87,13 @@ export const addMovieFavoriteOfUser = async (movie: Movie, email: string) => {
         });
 
         if (response.ok) {
-            console.log("pelicula agregada a mi lista")
+            toast.success(`${movie.title} agregada a mi lista`);
         } else {
             console.error("error al intentar agregar la pelicula a mi lista")
+            toast.error(`Error al intentar agregar ${movie.title}`);
         }
     } catch (error) {
-        console.error(error);
+        toast.error(`Error al intentar agregar ${movie.title}`);
     }
 };
 
@@ -109,12 +111,13 @@ export const removeMovieFavoriteOfUser = async (email: string, movie: Movie) => 
         });
 
         if (response.ok) {
-            console.log("pelicula removida con exito")
+            toast.success(`${movie.title} removida de mi lista`);
         } else {
-            console.error("error al intentar remover la pelicula de mi lista")
+            toast.error(`Error al intentar remover ${movie.title}`);
+
         }
     } catch (error) {
-        console.error(error);
+        toast.error(`Error al intentar remover ${movie.title}`);
     }
 };
 

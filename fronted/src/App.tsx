@@ -4,7 +4,7 @@ import { PrivateRoutes } from './componentes/PrivateRoutes';
 import { PublicRoutes } from './componentes/PublicRoutes';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { EmailProvider } from './context/ExistsEmailContext';
-
+import { Toaster } from 'react-hot-toast';
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
 
@@ -21,6 +21,7 @@ export default function App() {
     <AuthProvider>
       <EmailProvider>
         <BrowserRouter>
+          <Toaster position="bottom-right" reverseOrder={false} />
           <AppRoutes />
         </BrowserRouter>
       </EmailProvider>

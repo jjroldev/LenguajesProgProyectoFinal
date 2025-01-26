@@ -30,6 +30,7 @@ export default function Home() {
 
     return (
         <div className="contenedorHome">
+
             {featuredMovie && (
                 <>
                     <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
