@@ -72,8 +72,8 @@
     background-color: white;
     border: none;
     border-radius: 50%;
-    width: clamp(30px, 5vw, 50px);
-    height: clamp(30px, 5vw, 50px);
+    width: clamp(20px, 3vw, 40px);
+    height: clamp(20px, 3vw, 40px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,3 +89,9 @@
   .titulo-cardMovie{
     color: #fff;
   }
+
+
+  .heartVisible {
+    display: none !important;
+  }
+  

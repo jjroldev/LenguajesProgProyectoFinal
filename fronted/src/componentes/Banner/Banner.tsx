@@ -29,9 +29,10 @@ export function Banner({ movie, logoBuscar, isShort, isDetail}: BannerProps) {
         navigate("/info", { state: { movie } });
     }, [navigate, movie]);
 
+    
     if ((!movie || isLoading)) {
         return (
-            <div className={`header ${isShort ? "header-short" : ""}`}>
+            <div className={`header ${isShort ? "header-short" : ""} bg-gray-800`}>
                 <NavBar logoBuscar={logoBuscar} />
             </div>
         )

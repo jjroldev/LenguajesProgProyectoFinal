@@ -1,5 +1,5 @@
 import './Buscar.css';
-import {BASE_URL_BACKEND } from '../../utils/URLS';
+import { BASE_URL_BACKEND } from '../../utils/URLS';
 import { useState, useMemo } from 'react';
 import CardMovie from '../CardMovie/CardMovie';
 import { Lupa } from '../Lupa/Lupa';
@@ -12,7 +12,7 @@ export default function Buscar() {
     return sessionStorage.getItem(`nameMovie`) || '';
   });
 
-  const fetchUrls=getFetchURLs()
+  const fetchUrls = getFetchURLs()
 
   const fetchPopular = `${fetchUrls.popularMovies}`;
   const fetchSearch = `${BASE_URL_BACKEND}/movies/buscar/${nameMovie}`;
@@ -40,7 +40,7 @@ export default function Buscar() {
     movies.map((movie, index) => <CardMovie key={index} movie={movie} />);
 
   const loadingSpinner = (
-    <div className="containerSpinner">
+    <div className="w-full h-screen bg-black flex items-center justify-center">
       <div className="spinner"></div>
     </div>
   );

@@ -23,7 +23,7 @@ export default function Home() {
 
 
     if (movies.length === 0) {
-        return <div className="containerSpinner">
+        return <div className="w-full h-screen bg-black flex items-center justify-center">
             <div className="spinner"></div>
         </div>
     }

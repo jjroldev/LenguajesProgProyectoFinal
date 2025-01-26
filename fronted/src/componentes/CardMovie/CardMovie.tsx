@@ -2,14 +2,18 @@ import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { BsFillPlayFill } from "react-icons/bs";
 import { FaInfo } from "react-icons/fa";
-import VideoModal from "../ModalVideo/ModalVideo";
+import { lazy } from "react";
 import { Movie } from "../../interfaces/movie";
-import { URL_IMAGE_BACKDROP, URL_IMAGE_POSTER } from "../../utils/URLS";
+import { URL_IMAGE_BACKDROP } from "../../utils/URLS";
+import { URL_IMAGE_POSTER } from "../../utils/URLS";
+import { Suspense } from "react";
+import { addMovieFavoriteOfUser, removeMovieFavoriteOfUser } from "../../utils/userHelpers";
+const VideoModal = lazy(() => import('../ModalVideo/ModalVideo'));
 import "./CardMovie.css";
-import { Skeleton } from "@mui/material";
-
+import { useAuth } from "../../context/AuthContext";
 const CardMovie = React.memo(
-    ({ movie, isLarge }: { movie: Movie; isLarge?: boolean }) => {
+    ({ movie, isLarge, doDelete = false }: { movie: Movie; isLarge?: boolean, doDelete?: boolean }) => {
+        const { currentUser } = useAuth()
         const [open, setOpen] = useState(false);
         const [isVisible, setIsVisible] = useState(false);
         const [imageLoaded, setImageLoaded] = useState(false);
@@ -22,10 +26,6 @@ const CardMovie = React.memo(
             navigate("/info", { state: { movie } });
         }, [navigate, movie]);
 
-        if (!movie) {
-            return null;
-        }
-
         useEffect(() => {
             const observer = new IntersectionObserver(
                 ([entry]) => {
@@ -33,7 +33,7 @@ const CardMovie = React.memo(
                         setIsVisible(true);
                     }
                 },
-                { threshold: 0.2 }
+                { threshold: 0.1 }
             );
 
             if (imgRef.current) {
@@ -49,71 +49,57 @@ const CardMovie = React.memo(
 
         return (
             <div ref={imgRef} className={`contenedor-poster ${isLarge ? "large" : ""}`}>
-                {isVisible && (
-                    <div className={`cardContainerImage ${isLarge ? "backdrop" : "poster"}`}>
-                        {/* Skeleton visible mientras la imagen no se haya cargado */}
-                        <div
-                            className="image-container"
-                            style={{
-                                position: "relative",
-                                width: "100%",
-                                height: "100%",
-                            }}
-                        >
-                            {!imageLoaded && (
-                                <Skeleton
-                                    width="100%"
-                                    height="100%"
-                                    variant="rectangular"
-                                    sx={{ bgcolor: "grey.900" }}
-                                    animation="wave"
-                                    className="skeleton"
-                                />
-                            )}
-                            <img
-                                src={`${isLarge ? `${URL_IMAGE_BACKDROP}${movie.backdrop_path}` : `${URL_IMAGE_POSTER}${movie.poster_path}`}`}
-                                alt={movie.title}
-                                className={`main-image ${imageLoaded ? "visible" : "hidden"}`}
-                                onLoad={() => setImageLoaded(true)}
-                                style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                    transition: "opacity 0.5s ease-in-out",
-                                    opacity: imageLoaded ? 1 : 0,
-                                }}
-                            />
-                        </div>
-
-                        {/* Detalles cuando la imagen esté cargada */}
-                        {imageLoaded && (
-                            <div className="hover-details">
-                                <h2 className="titulo-cardMovie">
-                                    {isLarge && (movie.title.includes(":") ? movie.title.split(":")[0] : movie.title)}
-                                </h2>
-                                <div className="play-button">
-                                    <button onClick={handleOpen}>
-                                        <BsFillPlayFill size={23} />
-                                    </button>
+                <div className={`cardContainerImage ${isLarge ? "backdrop" : "poster"}`}>
+                    <div
+                        className={`bg-gray-800 h-full w-full absolute inset-0 ${imageLoaded ? "opacity-0" : "opacity-100"
+                            } transition-opacity duration-500`}
+                    ></div>
+                    {isVisible && (
+                        <img
+                            src={`${isLarge ? `${URL_IMAGE_BACKDROP}${movie.backdrop_path}` : `${URL_IMAGE_POSTER}${movie.poster_path}`}`}
+                            alt={movie.title}
+                            onLoad={() => setImageLoaded(true)}
+                            className={`main-image ${imageLoaded ? "visible" : "hidden"}`}
+                        />
+                    )}
+                    {imageLoaded && (
+                        <div className="hover-details">
+                            <h2 className="titulo-cardMovie">
+                                {isLarge && (movie.title.includes(":") ? movie.title.split(":")[0] : movie.title)}
+                            </h2>
+                            <div className="play-button">
+                                <button onClick={handleOpen}>
+                                    <BsFillPlayFill size={23} />
+                                </button>
+                                <Suspense fallback={<div />}>
                                     <VideoModal open={open} onClose={handleClose} movie={movie} />
-                                    <button onClick={() => {
-
-                                    }}>
-                                        <i className="fa-solid fa-heart"></i>
-                                    </button>
-                                    <button onClick={pasarMovie}>
-                                        <FaInfo size={16} />
-                                    </button>
-                                </div>
+                                </Suspense>
+                                <button onClick={pasarMovie}>
+                                    <FaInfo size={16} />
+                                </button>
+                                <button className={doDelete ? "heartVisible" : ""} onClick={() => {
+                                    currentUser?.email && (addMovieFavoriteOfUser(movie, currentUser.email))
+                                }}>
+                                    <i className="fa-solid fa-heart"></i>
+                                </button>
+                                {
+                                    doDelete && (
+                                        <button onClick={() => {
+                                            currentUser?.email && removeMovieFavoriteOfUser(currentUser.email,movie)
+                                        }}>
+                                            <i className="fa-solid fa-trash"></i>
+                                        </button>
+                                    )
+                                }
                             </div>
-                        )}
-                    </div>
-                )}
+                        </div>
+                    )}
+
+                </div>
             </div>
         );
+
+
     }
 );
 

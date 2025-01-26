@@ -16,7 +16,7 @@ export function MiLista() {
                     <div className={`favoritasContainer ${movies.length === 0 ? 'empty' : ''}`}>
                         {movies.length > 0 ? (
                             movies.map((movie) => (
-                                <CardMovie key={movie.movie_id} movie={movie} isLarge={true} />
+                                <CardMovie key={movie.movie_id} movie={movie} isLarge={true} doDelete={true}/>
                             ))
                         ) : (
                             <div className="noFavorites">No hay películas favoritas</div>

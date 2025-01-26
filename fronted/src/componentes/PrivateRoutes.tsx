@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './Home/Home';
-import { MiLista } from './Perfil/MiLista';
+import { MiLista } from './MiLista/MiLista';
 import Buscar from './Buscar/Buscar';
 export const PrivateRoutes = () => {
     return (
