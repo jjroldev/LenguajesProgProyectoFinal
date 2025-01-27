@@ -17,7 +17,7 @@
   }
   
   .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(17,17,17);
   }
   
 
@@ -45,11 +45,11 @@
     transition: .3s ease-in-out;
 }
 
-.lupa{
-    font-size: 1.3rem;
-    transition: .3s ease-in-out;
-    cursor: pointer;
-    color:#fff;
+.lupa {
+  font-size: 1.3rem;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  color: #fff;
 }
 
 .textInicio:hover,.lupa:hover{

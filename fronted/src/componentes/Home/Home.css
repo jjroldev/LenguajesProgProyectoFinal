@@ -1,6 +1,6 @@
 .contenedorHome {
     height: 100%;
-    background-color: #000000;
+    background-color: rgb(17, 17, 17);
     display: flex;
     flex-direction: column;
     overflow-y: visible;
@@ -14,9 +14,8 @@
     flex-direction: column;
     gap: 5px;
     width: 100%;
-    background-color: #0000;
+    background-color: rgb(17, 17, 17);
     box-sizing: border-box;
-    min-height: 120vh;
 }
 
 @media (max-width: 1024px) {

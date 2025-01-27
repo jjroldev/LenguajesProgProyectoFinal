@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Movie } from "../interfaces/movie";
 import toast from "react-hot-toast";
+import { useSearch } from "../context/SearchContext";
 const moviesCache: Record<string, Movie[]> = {}; 
 
 export const useFetchMovies = (url: string,isToast?:boolean) => {
   const [movies, setMovies] = useState<Movie[]>(moviesCache[url] || []);
   const [isLoading, setIsLoading] = useState(!moviesCache[url]);
   const [error, setError] = useState<string | null>(null);
-
+  const {searchTerm}=useSearch()
   const fetchMovies = async () => {
     if (moviesCache[url]) {
       setMovies(moviesCache[url]);
@@ -20,8 +21,8 @@ export const useFetchMovies = (url: string,isToast?:boolean) => {
       const response = await fetch(url);
 
       if (!response.ok) {
-        if(isToast){
-          toast.error("No hay coincidencias en tu busqueda")
+        if(isToast && searchTerm!=""){
+          toast.error("No hubo coincidencias con tu busqueda de "+searchTerm)
         }
         throw new Error("Error fetching data");
       }

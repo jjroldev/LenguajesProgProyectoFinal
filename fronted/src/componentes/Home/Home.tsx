@@ -5,14 +5,14 @@ import { lazy } from "react";
 import { Movie } from "../../interfaces/movie";
 const MovieSwiper = lazy(() => import("../MovieSwiper/MovieSwiper"));
 import { getFetchURLs } from "../../utils/URLS";
-import { NavBar } from "../NavBar/NavBar";
 import { useFetchMovies } from "../../hooks/useFetchMovies";
 import { useMemo } from "react";
+import { useSearch } from "../../context/SearchContext";
 export default function Home() {
     const fetchURLS = useMemo(() => getFetchURLs(), []);
     const { movies, isLoading } = useFetchMovies(fetchURLS.popularMovies)
-
     const [featuredMovie, setFeaturedMovie] = useState<Movie | null>(null);
+    const{setSearchTerm}=useSearch()
 
     useEffect(() => {
         if (!isLoading) {
@@ -24,13 +24,13 @@ export default function Home() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setSearchTerm("")
     }, []);
 
 
     if (isLoading) {
         return (
             <>
-                <NavBar perfil={true} menu={true} logoBuscar={true} />
                 <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
             </>
         )

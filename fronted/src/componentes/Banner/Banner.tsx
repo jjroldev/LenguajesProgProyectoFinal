@@ -38,7 +38,7 @@ export function Banner({ movie, logoBuscar, isShort, isDetail }: BannerProps) {
     if ((!movie || isLoading || !fetchedDetails || !movieProviders)) {
         return (
             <div className={`header ${isShort ? "header-short" : ""} bg-black`}>
-                <NavBar perfil={true} menu={true} logoBuscar={logoBuscar} />
+                <NavBar perfil={true} menu={true} logoBuscar={logoBuscar}/>
             </div>
         )
     }
@@ -172,7 +172,7 @@ export function Banner({ movie, logoBuscar, isShort, isDetail }: BannerProps) {
                 src={`${URL_IMAGE_BANNER}${movie.backdrop_path}`}
                 alt={movie.title}
             />
-            <NavBar perfil={true} menu={true} logoBuscar={logoBuscar} />
+            <NavBar perfil={true} menu={true} logoBuscar={logoBuscar}/>
             <div className="cuerpoBanner">
                 <div className={`${isShort ? "contenedorLogo1" : `contenedorLogo ${isDetail ? "contenedorDetailN" : ""}`} `}>
                     {renderLogoOrContent()}

@@ -5,6 +5,7 @@ import { PublicRoutes } from './componentes/PublicRoutes';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { EmailProvider } from './context/ExistsEmailContext';
 import { Toaster } from 'react-hot-toast';
+import { SearchProvider } from './context/SearchContext';
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
 
@@ -20,10 +21,12 @@ export default function App() {
   return (
     <AuthProvider>
       <EmailProvider>
-        <BrowserRouter>
-          <Toaster position="bottom-right" reverseOrder={false} />
-          <AppRoutes />
-        </BrowserRouter>
+        <SearchProvider>
+          <BrowserRouter>
+            <Toaster position="bottom-right" reverseOrder={false} />
+            <AppRoutes />
+          </BrowserRouter>
+        </SearchProvider>
       </EmailProvider>
     </AuthProvider>
   );
