@@ -33,7 +33,6 @@ export default function MiLista() {
           <div className="contenedorFavoritas">
             <h2 className="tituloFavoritas">Mi Lista</h2>
             <div className={`favoritasContainerSpinner`}>
-              <div className="spinner"></div>
             </div>
           </div>
         </div>

@@ -18,13 +18,13 @@ export default function Buscar() {
     window.scrollTo(0, 0);
   }, []);
 
-  const fetchUrls = getFetchURLs()
+  const fetchUrls = useMemo(() => getFetchURLs(), []);
 
   const fetchPopular = `${fetchUrls.popularMovies}`;
   const fetchSearch = `${BASE_URL_BACKEND}/movies/buscar/${nameMovie}`;
   const fetchURL = nameMovie ? fetchSearch : fetchPopular;
 
-  const { movies } = useFetchMovies(fetchURL);
+  const { movies } = useFetchMovies(fetchURL, true);
   const { movies: moviesPopulars } = useFetchMovies(fetchPopular);
 
   const validMovies = useMemo(() => movies.filter((movie) => movie.backdrop_path), [movies]);
@@ -33,7 +33,7 @@ export default function Buscar() {
     [moviesPopulars]
   );
 
-  const movieBanner = validMovies[0] || validMoviesPopular[0];
+  const movieBanner = validMovies[0]? validMovies[0] : validMoviesPopular[0];
 
   const handleSearch = (value: string) => {
     setNameMovie(value);
@@ -56,11 +56,7 @@ export default function Buscar() {
   const renderContent = () => {
     if (movies.length > 0) {
       return <div className="contenedorPeliculasBuscar">{renderMovies(validMovies)}</div>;
-    } else if (nameMovie && validMovies.length === 0) {
-      return (
-        <div className="contenedorPeliculasBuscar">{renderMovies(validMoviesPopular)}</div>
-      );
-    } else if (moviesPopulars.length > 0) {
+    } else if (validMoviesPopular.length > 0) {
       return <div className="contenedorPeliculasBuscar">{renderMovies(validMoviesPopular)}</div>;
     } else {
       return loadingSpinner;
@@ -80,6 +76,7 @@ export default function Buscar() {
               <InputBuscar
                 placeholder={'Search Movies'}
                 onSubmit={handleSearch}
+                name={nameMovie}
               />
             </div>
           </>

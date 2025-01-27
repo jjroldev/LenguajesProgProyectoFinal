@@ -1,10 +1,11 @@
 interface LupaProps {
     placeholder: string;
     onSubmit: (value: string) => void;
+    name:string;
 }
 import { useState } from "react";
-export function InputBuscar({ placeholder, onSubmit }: LupaProps) {
-    const [inputValue, setInputValue] = useState('');
+export function InputBuscar({ placeholder, onSubmit,name }: LupaProps) {
+    const [inputValue, setInputValue] = useState(name);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,7 +25,6 @@ export function InputBuscar({ placeholder, onSubmit }: LupaProps) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                 />
-
                 <button
                     type="submit"
                     style={{ display: 'none' }}
