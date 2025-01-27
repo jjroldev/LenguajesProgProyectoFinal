@@ -33,7 +33,7 @@ export default function Buscar() {
     [moviesPopulars]
   );
 
-  const movieBanner = validMovies[0]? validMovies[0] : validMoviesPopular[0];
+  const movieBanner =validMovies[0] || validMoviesPopular[0];
 
   const handleSearch = (value: string) => {
     setNameMovie(value);
@@ -54,7 +54,7 @@ export default function Buscar() {
   );
 
   const renderContent = () => {
-    if (movies.length > 0) {
+    if (validMovies.length > 0) {
       return <div className="contenedorPeliculasBuscar">{renderMovies(validMovies)}</div>;
     } else if (validMoviesPopular.length > 0) {
       return <div className="contenedorPeliculasBuscar">{renderMovies(validMoviesPopular)}</div>;
