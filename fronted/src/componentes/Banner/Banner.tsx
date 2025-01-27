@@ -34,10 +34,6 @@ export function Banner({ movie, logoBuscar, isShort, isDetail }: BannerProps) {
         setLogoPath(logoPathq)
     }, [fetchedDetails])
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
 
     if ((!movie || isLoading || !fetchedDetails || !movieProviders)) {
         return (

@@ -1,6 +1,5 @@
 import './NavBar.css';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';

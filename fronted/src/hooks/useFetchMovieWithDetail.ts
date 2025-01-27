@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import {MovieDetails } from "../interfaces/movie";
-import { BASE_URL,API_KEY } from "../utils/URLS";
-const useFetchMovieDetails = (
-  movieId: number | undefined,
-) => {
+import { MovieDetails } from "../interfaces/movie";
+import { BASE_URL, API_KEY } from "../utils/URLS";
+
+const movieCache: Record<number, MovieDetails> = {}; 
+
+const useFetchMovieDetails = (movieId: number | undefined) => {
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -12,6 +13,12 @@ const useFetchMovieDetails = (
     const fetchMovieDetails = async () => {
       if (!movieId) {
         setMovie(null);
+        setIsLoading(false);
+        return;
+      }
+
+      if (movieCache[movieId]) {
+        setMovie(movieCache[movieId]);
         setIsLoading(false);
         return;
       }
@@ -28,6 +35,8 @@ const useFetchMovieDetails = (
         }
 
         const data = await response.json();
+
+        movieCache[movieId] = data;
         setMovie(data);
       } catch (err: any) {
         console.error("Error fetching movie details:", err);

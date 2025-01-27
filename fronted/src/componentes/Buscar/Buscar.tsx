@@ -49,7 +49,6 @@ export default function Buscar() {
       <div className="w-full h-screen bg-black flex items-center justify-center">
         <div className="spinner"></div>
       </div>
-      <div className='contenedorPeliculasBuscar'></div>
     </>
 
   );

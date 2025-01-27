@@ -95,11 +95,13 @@ const CardMovie = React.memo(
                                 <button onClick={pasarMovie}>
                                     <FaInfo size={16} />
                                 </button>
-                                <button className={doDelete ? "heartVisible" : ""} >
-                                    <i
-                                        onClick={() => {
-                                            currentUser?.email && (addMovieFavoriteOfUser(movie, currentUser.email))
-                                        }} className="corazon fa-solid fa-heart">
+                                <button
+                                    onClick={() => {
+                                        currentUser?.email && (addMovieFavoriteOfUser(movie, currentUser.email))
+                                    }}
+                                    className={doDelete ? "heartVisible corazon" : "corazon"} 
+                                    >
+                                    <i className="fa-solid fa-heart">
                                     </i>
                                 </button>
                                 {doDelete && (

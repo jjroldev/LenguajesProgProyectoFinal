@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Trailer } from "../interfaces/trailer";
-import { BASE_URL,API_KEY } from "../utils/URLS";
+import { BASE_URL, API_KEY } from "../utils/URLS";
+
+const trailerCache: Record<number, Trailer | null> = {};
+
 const useFetchTrailer = (movieId: number | undefined) => {
   const [trailer, setTrailer] = useState<Trailer | null>(null);
 
   useEffect(() => {
     const fetchTrailer = async () => {
       if (!movieId) return;
+
+      if (trailerCache[movieId]) {
+        setTrailer(trailerCache[movieId]);
+        return;
+      }
 
       try {
         const { data } = await axios.get(`${BASE_URL}/movie/${movieId}`, {
@@ -18,12 +26,13 @@ const useFetchTrailer = (movieId: number | undefined) => {
         });
 
         if (data.videos && data.videos.results) {
-          const foundTrailer = 
+          const foundTrailer =
             data.videos.results.find(
               (vid: any) => vid.name === "Official Trailer"
             ) || data.videos.results[8];
 
           if (foundTrailer) {
+            trailerCache[movieId] = foundTrailer;
             setTrailer(foundTrailer);
           }
         }

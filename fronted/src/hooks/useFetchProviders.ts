@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
-import { BASE_URL,API_KEY } from "../utils/URLS";
-const useFetchProviders = (movieId: number|undefined) => {
+import { BASE_URL, API_KEY } from "../utils/URLS";
+
+// Cache global para proveedores por `movieId`
+const providersCache: Record<number, any> = {};
+
+const useFetchProviders = (movieId: number | undefined) => {
   const [movieProviders, setMovieProviders] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -13,6 +17,12 @@ const useFetchProviders = (movieId: number|undefined) => {
         return;
       }
 
+      if (providersCache[movieId]) {
+        setMovieProviders(providersCache[movieId]);
+        setIsLoading(false);
+        return;
+      }
+
       setIsLoading(true);
 
       try {
@@ -21,7 +31,7 @@ const useFetchProviders = (movieId: number|undefined) => {
         );
 
         if (!response.ok) {
-          throw new Error(`Error fetching details for movie ID: ${movieId}`);
+          throw new Error(`Error fetching providers for movie ID: ${movieId}`);
         }
 
         const data = await response.json();
@@ -43,10 +53,11 @@ const useFetchProviders = (movieId: number|undefined) => {
             });
           }
 
+          providersCache[movieId] = list;
           setMovieProviders(list);
         }
       } catch (err: any) {
-        console.error("Error fetching movie details:", err);
+        console.error("Error fetching movie providers:", err);
         setError(err.message);
       } finally {
         setIsLoading(false);

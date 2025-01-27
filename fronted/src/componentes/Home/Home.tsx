@@ -6,10 +6,10 @@ import { Movie } from "../../interfaces/movie";
 const MovieSwiper = lazy(() => import("../MovieSwiper/MovieSwiper"));
 import { getFetchURLs } from "../../utils/URLS";
 import { NavBar } from "../NavBar/NavBar";
-
 import { useFetchMovies } from "../../hooks/useFetchMovies";
+import { useMemo } from "react";
 export default function Home() {
-    const fetchURLS = getFetchURLs()
+    const fetchURLS = useMemo(() => getFetchURLs(), []);
     const { movies, isLoading } = useFetchMovies(fetchURLS.popularMovies)
 
     const [featuredMovie, setFeaturedMovie] = useState<Movie | null>(null);
@@ -22,14 +22,16 @@ export default function Home() {
         }
     }, [movies]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
 
     if (isLoading) {
         return (
             <>
                 <NavBar perfil={true} menu={true} logoBuscar={true} />
                 <Banner movie={featuredMovie} logoBuscar={true} isShort={false} />
-                <div className="contenedorPeliculas">
-                </div>
             </>
         )
     }

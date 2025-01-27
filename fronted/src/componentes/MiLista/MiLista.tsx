@@ -6,13 +6,18 @@ import { removeMovieFavoriteOfUser } from '../../utils/userHelpers';
 import { Movie } from '../../interfaces/movie';
 import "./MiLista.css"
 import { useAuth } from '../../context/AuthContext';
-export function MiLista() {
+export default function MiLista() {
   const { movies: initialMovies, isLoading } = useFetchFavoritesMovies();
   const [movies, setMovies] = useState(initialMovies);
   const { currentUser } = useAuth()
   useEffect(() => {
     setMovies(initialMovies);
   }, [initialMovies]);
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 
   const handleRemoveFavorite = (movie: Movie) => {
@@ -40,8 +45,8 @@ export function MiLista() {
     <>
       <NavBar logoBuscar={true} menu={true} perfil={true} />
       <div className="favorites">
-        <div className="contenedorFavoritas">
-          <h2 className="tituloFavoritas">Mi Lista</h2>
+        <h2 className="tituloFavoritas">Mi Lista</h2>
+        <div className='contenedorFavoritas'>
           <div className={`favoritasContainer ${movies.length === 0 ? 'empty' : ''}`}>
             {movies.length > 0 ? (
               movies.map((movie) => (
@@ -58,6 +63,7 @@ export function MiLista() {
             )}
           </div>
         </div>
+
       </div>
     </>
   );

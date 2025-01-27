@@ -40,7 +40,7 @@
 
 .textInicio{
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 300;
     font-size: clamp(.7rem, 1.5vw, 1rem);
     transition: .3s ease-in-out;
 }

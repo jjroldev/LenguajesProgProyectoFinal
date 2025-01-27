@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { PageLogin } from './PageLogin/PageLogin';
-import { PageRegister } from './PageRegister/PageRegister';
+import { lazy } from 'react';
+const PageLogin = lazy(()=>import("./PageLogin/PageLogin"))
+const PageRegister = lazy(()=>import("./PageRegister/PageRegister"))
+
 export const PublicRoutes = () => {
     return (
         <Routes>
