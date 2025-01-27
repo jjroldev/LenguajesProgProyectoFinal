@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { Movie } from "../interfaces/movie";
 import toast from "react-hot-toast";
-const moviesCache: Record<string, Movie[]> = {}; 
+
+const cache: Record<string, Movie[]> = {};
 
 export const useFetchMovies = (url: string, isToast?: boolean) => {
-  const cachedMovies = moviesCache[url] || [];
+  const cachedMovies = cache[url] || [];
   const [movies, setMovies] = useState<Movie[]>(cachedMovies);
   const [isLoading, setIsLoading] = useState<boolean>(cachedMovies.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   const fetchMovies = async () => {
-    if (moviesCache[url]) return;
+    if (cache[url]) return;
 
     try {
       setIsLoading(true);
@@ -22,7 +23,7 @@ export const useFetchMovies = (url: string, isToast?: boolean) => {
       }
 
       const data = await response.json();
-      moviesCache[url] = data; 
+      cache[url] = data;
       setMovies(data); 
     } catch (err: any) {
       console.error("Error fetching movies:", err);
@@ -33,8 +34,10 @@ export const useFetchMovies = (url: string, isToast?: boolean) => {
   };
 
   useEffect(() => {
-    fetchMovies();
-  }, [url]);
+    if (movies.length === 0) {
+      fetchMovies();
+    }
+  }, [url, movies]);
 
   return { movies, isLoading, error };
 };

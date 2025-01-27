@@ -4,16 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useLocation } from 'react-router-dom';
 import { useEmail } from '../../context/ExistsEmailContext';
-export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=false }: { logoBuscar: boolean, menu?: boolean, perfil?: boolean,logoGrande?:boolean }) {
+export function NavBar({ logoBuscar, menu = false, perfil = false, logoGrande = false }: { logoBuscar: boolean, menu?: boolean, perfil?: boolean, logoGrande?: boolean }) {
     const navigate = useNavigate();
 
     const handleSearchClick = () => {
         navigate("/buscar");
     };
 
-    const {currentUser,logout}=useAuth()
-    const {setEmailExists}=useEmail()
+    const location = useLocation();
+
+    const { currentUser, logout } = useAuth()
+    const { setEmailExists } = useEmail()
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -35,13 +38,23 @@ export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=fal
                 <img
                     src="../../../public/JUSTFLIX.svg"
                     alt="Logo"
-                    className={`${logoGrande? "logoGrande":""}`}
+                    className={`${logoGrande ? "logoGrande" : ""}`}
                 />
                 {
                     menu && (
                         <>
-                            <Link className='textInicio' to="/">Home</Link>
-                            <Link className="textInicio" to="/miLista">Favorites</Link>
+                            <Link
+                                className={`textInicio ${location.pathname === "/home" ? "bold" : ""}`}
+                                to="/home"
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                className={`textInicio ${location.pathname === "/miLista" ? "bold" : ""}`}
+                                to="/miLista"
+                            >
+                                Favorites
+                            </Link>
                         </>
                     )
                 }
@@ -49,7 +62,7 @@ export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=fal
             <div className='perfilYLupaContenedor'>
                 {logoBuscar && (<i
                     className="fa-solid fa-magnifying-glass lupa"
-                    onClick={handleSearchClick} 
+                    onClick={handleSearchClick}
                 >
                 </i>)
                 }
@@ -61,9 +74,9 @@ export function NavBar({ logoBuscar, menu = false, perfil = false,logoGrande=fal
                                     <img src="../../../public/avatar1.png" alt="" />
                                 </div>
                                 <NavDropdown title="" id="navbarScrollingDropdown">
-                                    <NavDropdown.Item className='drop'><span onClick={()=>{navigate("/miLista")}}>{currentUser?.name}</span></NavDropdown.Item>
+                                    <NavDropdown.Item className='drop'><span onClick={() => { navigate("/miLista") }}>{currentUser?.name}</span></NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item className='drop' onClick={()=>{
+                                    <NavDropdown.Item className='drop' onClick={() => {
                                         setEmailExists(false)
                                         logout()
                                     }}>
