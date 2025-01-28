@@ -11,10 +11,10 @@ interface NavBarProps {
     menu?: boolean;
     perfil?: boolean;
     logoGrande?: boolean;
-    condicionExpanded?:boolean,
+    condicionExpanded?: boolean,
 }
 
-export function NavBar({ logoBuscar, menu = false, perfil = false, logoGrande = false,condicionExpanded}: NavBarProps) {
+export function NavBar({ logoBuscar, menu = false, perfil = false, logoGrande = false, condicionExpanded }: NavBarProps) {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -54,9 +54,9 @@ export function NavBar({ logoBuscar, menu = false, perfil = false, logoGrande = 
                     </>
                 )}
             </div>
-            
+
             <div className='perfilYLupaContenedor'>
-                {logoBuscar && <SearchBar condicionExpanded={condicionExpanded} desdeHome={location.state?.fromBuscar || false}/>}
+                {logoBuscar && <SearchBar condicionExpanded={condicionExpanded} desdeHome={location.state?.fromBuscar || false} />}
                 {perfil && (
                     <div className='contenedorPerfilImagen'>
                         <div className='containerImagePerfil'>
@@ -64,14 +64,32 @@ export function NavBar({ logoBuscar, menu = false, perfil = false, logoGrande = 
                         </div>
                         <NavDropdown title="" id="navbarScrollingDropdown">
                             <NavDropdown.Item className='drop'>
+                                <div className='containerImagePerfil'>
+                                    <img src="../../../public/avatar2.jpg" alt="" />
+                                </div>
                                 <span onClick={() => navigate("/miLista")}>{currentUser?.name}</span>
+
+                            </NavDropdown.Item>
+                            <NavDropdown.Item className='drop'>
+                                <div className='containerImagePerfil'>
+                                    <img src="../../../public/avatar3.png" alt="" />
+                                </div>
+                                <span onClick={() => navigate("/miLista")}>{currentUser?.name}</span>
+
+                            </NavDropdown.Item>
+                            <NavDropdown.Item className='drop'>
+                                <div className='containerImagePerfil'>
+                                    <img src="../../../public/avatar4.jpg" alt="" />
+                                </div>
+                                <span onClick={() => navigate("/miLista")}>{currentUser?.name}</span>
+
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item className='drop' onClick={() => {
                                 setEmailExists(false);
                                 logout();
                             }}>
-                                <span className='logOut'>Log out </span>
+                                <span className='logOut'>Sign out </span>
                             </NavDropdown.Item>
                         </NavDropdown>
                     </div>
