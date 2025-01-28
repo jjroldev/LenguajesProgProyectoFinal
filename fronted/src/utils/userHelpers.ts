@@ -75,7 +75,7 @@ export const deleteUser = async (email: string) => {
 
 export const addMovieFavoriteOfUser = async (
     movie: Movie,
-    email: string,
+    email: string|undefined,
 ) => {
     try {
 

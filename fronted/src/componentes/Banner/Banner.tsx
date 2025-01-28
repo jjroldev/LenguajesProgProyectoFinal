@@ -18,7 +18,7 @@ interface BannerProps {
 }
 export function Banner({ movie, logoBuscar, isShort, isDetail }: BannerProps) {
     const [open, setOpen] = React.useState(false);
-    const { movie: fetchedDetails, isLoading } = useFetchMovieDetails(movie?.movie_id);
+    const { movie: fetchedDetails } = useFetchMovieDetails(movie?.movie_id);
     const { movieProviders } = useFetchProviders(movie?.movie_id)
     const [logoPath, setLogoPath] = useState<string|undefined>("")
     const navigate = useNavigate();
@@ -35,9 +35,9 @@ export function Banner({ movie, logoBuscar, isShort, isDetail }: BannerProps) {
     }, [fetchedDetails])
 
 
-    if ((!movie || isLoading || !fetchedDetails || !movieProviders)) {
+    if ((!movie || !movieProviders)) {
         return (
-            <div className={`header ${isShort ? "header-short" : ""} bg-black`}>
+            <div className={`header ${isShort ? "header-short" : ""}`}>
                 <NavBar perfil={true} menu={true} logoBuscar={logoBuscar}/>
             </div>
         )

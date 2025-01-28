@@ -51,7 +51,7 @@ const CardMovie = React.memo(
                         setIsVisible(true);
                     }
                 },
-                { threshold: 0.1 }
+                { threshold: 0.01 }
             );
 
             if (imgRef.current) {

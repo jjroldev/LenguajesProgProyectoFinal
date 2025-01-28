@@ -1,6 +1,5 @@
 import './Buscar.css';
 import { BASE_URL_BACKEND } from '../../utils/URLS';
-import { useMemo } from 'react';
 import CardMovie from '../CardMovie/CardMovie';
 import { Movie } from '../../interfaces/movie';
 import { useFetchMovies } from '../../hooks/useFetchMovies';
@@ -31,15 +30,14 @@ export default function Buscar() {
 
   const { movies, isLoading } = useFetchMovies(fetchURL, true);
 
-  const validMovies = useMemo(() => movies.filter((movie) => movie.backdrop_path), [movies]);
 
   const renderMovies = (movies: Movie[]) =>
     movies.map((movie, index) => <CardMovie key={index} movie={movie} />);
 
   const renderContent = () => {
     if (movies.length > 0) {
-      return <div className="contenedorPeliculasBuscar">{renderMovies(validMovies)}</div>;
-    } else if (searchTerm && validMovies.length == 0) {
+      return <div className="contenedorPeliculasBuscar">{renderMovies(movies)}</div>;
+    } else if (searchTerm && movies.length == 0) {
       return (
         <>
           <div className='contenedorPeliculasNoE'>

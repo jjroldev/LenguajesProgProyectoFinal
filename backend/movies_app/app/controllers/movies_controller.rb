@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   end
 
   def populars
-    threshold = 1000
+    threshold = 500
     @movies = Movie.where("popularity > ?", threshold).order(popularity: :desc)
     render json: @movies
   end

@@ -16,10 +16,7 @@ const MovieSwiper = React.memo(
     const renderMovies = useCallback(
       (movies: Movie[]) =>
         movies.map((movie) => {
-          const imagePath = isLarge ? movie.backdrop_path : movie.poster_path;
-          return imagePath ? (
-            <CardMovie key={movie.movie_id} movie={movie} isLarge={isLarge} />
-          ) : null;
+          return <CardMovie key={movie.movie_id} movie={movie} isLarge={isLarge} />
         }),
       [isLarge]
     );

@@ -16,8 +16,7 @@ export default function Home() {
 
     useEffect(() => {
         if (!isLoading) {
-            const randomIndex = Math.floor(Math.random() * movies.length);
-            const selectedMovie = movies[randomIndex];
+            const selectedMovie = movies[1];
             setFeaturedMovie(selectedMovie);
         }
     }, [movies]);
